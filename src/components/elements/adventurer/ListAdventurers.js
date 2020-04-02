@@ -1,20 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
+import SelectAdventurer from './SelectAdventurer';
 import CreateAdventurer from './CreateAdventurer';
 import './styles/listAdventurers.scss';
 
-const ListAdventurers = () => {
+const ListAdventurers = ({ createAdventurer }) => {
   return (
     <Grid container justify="center" className="root">
-      <CreateAdventurer />
-      <CreateAdventurer />
-      <CreateAdventurer />
-      <CreateAdventurer />
-      <CreateAdventurer />
-      <CreateAdventurer />
+      <SelectAdventurer />
+      <SelectAdventurer />
+      <SelectAdventurer />
+      <CreateAdventurer createAdventurer={createAdventurer} />
     </Grid>
   );
+};
+
+ListAdventurers.propTypes = {
+  createAdventurer: PropTypes.func.isRequired,
 };
 
 export default ListAdventurers;

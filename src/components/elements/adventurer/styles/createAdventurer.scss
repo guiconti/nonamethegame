@@ -1,0 +1,23 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 350px;
+  width: 250px;
+  padding: 4px;
+  margin-bottom: 32px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.icon {
+  margin: 16px;
+  margin-top: 0px;
+  font-size: 75px !important;
+  color: #999;
+}

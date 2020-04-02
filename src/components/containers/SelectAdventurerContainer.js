@@ -9,9 +9,14 @@ import ListAdventurers from '../elements/adventurer/ListAdventurers';
 const SelectAdventurerContainer = () => {
   const dispatch = useDispatch();
 
+  const createAdventurer = e => {
+    e.preventDefault();
+    console.log('Create an adventurer');
+  }
+
   return (
     <>
-      <ListAdventurers />
+      <ListAdventurers createAdventurer={createAdventurer} />
     </>
   );
 };
