@@ -1,5 +1,5 @@
 {
-  "name": "react-boilerplate",
+  "name": "nonamethegame",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
-    "start": "concurrently -k -r -s first \"npm run test:watch\" \"npm run open:src\" \"npm run lint:watch\"",
+    "start": "concurrently -k -r -s first \"npm run open:src\" \"npm run lint:watch\"",
     "open:src": "babel-node tools/srcServer.js",
     "open:dist": "babel-node tools/distServer.js",
     "lint": "esw webpack.config.* src tools --color",
@@ -33,6 +33,7 @@
   "dependencies": {
     "@hot-loader/react-dom": "16.10.2",
     "@material-ui/core": "^4.7.2",
+    "@material-ui/icons": "^4.9.1",
     "connected-react-router": "6.5.2",
     "object-assign": "4.1.1",
     "react": "16.11.0",

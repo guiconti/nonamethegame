@@ -1,18 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import configureStore, { history } from '../store';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 const store = configureStore();
 import App from './App';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from '../plugins/theme';
 
-export default class Root extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
+const Root = () => {
+  return (
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
           <App />
-        </ConnectedRouter>
-      </Provider>
-    );
-  }
+        </ThemeProvider>
+      </ConnectedRouter>
+    </Provider>
+  );
 }
+
+export default Root;
