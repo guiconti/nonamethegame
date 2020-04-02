@@ -1,0 +1,1 @@
+export const REGISTER_FETCH = 'REGISTER_FETCH';
