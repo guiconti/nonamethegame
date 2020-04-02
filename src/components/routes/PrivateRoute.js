@@ -7,7 +7,7 @@ import { LOGIN } from '../../constants/routes'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const signedIn = useSelector(getSignedIn);
-
+  
   return (
     <Route
       {...rest}
@@ -19,7 +19,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 PrivateRoute.propTypes = {
-  component: PropTypes.function
+  component: PropTypes.any
 };
 
 export default PrivateRoute;

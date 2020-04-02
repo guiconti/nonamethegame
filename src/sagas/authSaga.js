@@ -1,11 +1,15 @@
 import { put, call, take, fork, all } from 'redux-saga/effects';
 import register from '../apis/register';
-import { receiveExample } from '../actions/barActions';
 import { REGISTER_FETCH } from '../types/auth';
+import { signedIn } from '../actions/authActions';
 
 export function* fetchRegister(payload) {
-  const value = yield call(register, payload.value);
-  yield put(receiveExample(value));
+  try {
+    yield call(register, payload);
+    yield put(signedIn());
+  } catch(err) {
+    //  Handle error with an action
+  }
 }
 
 function* watchRegister() {

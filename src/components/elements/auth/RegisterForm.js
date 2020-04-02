@@ -16,7 +16,8 @@ const RegisterForm = ({
   setEmail,
   setPassword,
   setConfirmPassword,
-  toggleIsRegistering
+  toggleIsRegistering,
+  register
 }) => {
   return (
     <div className="paper">
@@ -66,17 +67,22 @@ const RegisterForm = ({
           value={confirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}
         />
-        <Button type="submit" fullWidth variant="contained" color="primary" className="submit">
+        <Button
+          onClick={register}
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className="submit"
+        >
           Register
         </Button>
         <Grid container>
           <Grid item xs>
-            <Link variant="body2">
-              Forgot password?
-            </Link>
+            <Link variant="body2">Forgot password?</Link>
           </Grid>
           <Grid item>
-          <Link onClick={() => toggleIsRegistering(false)} variant="body2">
+            <Link onClick={() => toggleIsRegistering(false)} variant="body2">
               {'Already have an account? Sign In'}
             </Link>
           </Grid>
@@ -94,6 +100,7 @@ RegisterForm.propTypes = {
   setPassword: PropTypes.func.isRequired,
   setConfirmPassword: PropTypes.func.isRequired,
   toggleIsRegistering: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired
 };
 
 export default RegisterForm;
