@@ -2,14 +2,20 @@ import {createStore, compose, applyMiddleware} from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import createSagaMiddleware from 'redux-saga'
 import { createBrowserHistory } from 'history';
-// 'routerMiddleware': the new way of storing route changes with redux middleware since rrV4.
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import createRootReducer from '../reducers';
 import rootSaga from '../sagas';
 
 export const history = createBrowserHistory();
 const connectRouterHistory = connectRouter(history);
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
+const persistConfig = {
+  key: 'root',
+  storage,
+  blacklist: ['router'],
+};
 
 function configureStoreProd(initialState) {
   const reactRouterMiddleware = routerMiddleware(history);
@@ -17,14 +23,18 @@ function configureStoreProd(initialState) {
     sagaMiddleware,
     reactRouterMiddleware,
   ];
+  const persistedReducer = persistReducer(persistConfig, createRootReducer(history));
 
   sagaMiddleware.run(rootSaga);
 
-  return createStore(
-    createRootReducer(history), // root reducer with router state
+  const store = createStore(
+    persistedReducer, // persisted reducer with router state
     initialState,
     compose(applyMiddleware(...middlewares))
   );
+  const persistor = persistStore(store);
+
+  return { store, persistor };
 }
 
 function configureStoreDev(initialState) {
@@ -35,13 +45,15 @@ function configureStoreDev(initialState) {
     sagaMiddleware,
     reactRouterMiddleware,
   ];
+  const persistedReducer = persistReducer(persistConfig, createRootReducer(history));
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
   const store = createStore(
-    createRootReducer(history), // root reducer with router state
+    persistedReducer, // persisted reducer with router state
     initialState,
     composeEnhancers(applyMiddleware(...middlewares))
   );
+  const persistor = persistStore(store);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
@@ -53,7 +65,7 @@ function configureStoreDev(initialState) {
 
   sagaMiddleware.run(rootSaga);
 
-  return store;
+  return { store, persistor };
 }
 
 const configureStore = process.env.NODE_ENV === 'production' ? configureStoreProd : configureStoreDev;

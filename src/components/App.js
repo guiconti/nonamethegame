@@ -9,10 +9,6 @@ import NotFound from './pages/NotFound';
 import { HOME, LOGIN } from '../constants/routes';
 import { hot } from 'react-hot-loader';
 
-// This is a class-based component because the current
-// version of hot reloading won't hot reload a stateless
-// component at the top-level.
-
 const App = () => {
   return (
     <Switch>
