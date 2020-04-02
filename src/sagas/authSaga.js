@@ -4,14 +4,14 @@ import signIn from '../apis/signIn';
 import { REGISTER_FETCH, SIGN_IN_FETCH } from '../types/auth';
 import { signedIn, loading } from '../actions/authActions';
 import { changeRoute } from '../actions/navigationActions';
-import { HOME } from '../constants/routes';
+import { ADVENTURERS } from '../constants/routes';
 
 export function* fetchRegister(payload) {
   yield put(loading());
   try {
     yield call(register, payload);
     yield put(signedIn());
-    yield put(changeRoute(HOME));
+    yield put(changeRoute(ADVENTURERS));
   } catch(err) {
     //  Handle error with an action
   }
@@ -22,7 +22,7 @@ export function* fetchSignIn(payload) {
   try {
     yield call(signIn, payload);
     yield put(signedIn());
-    yield put(changeRoute(HOME));
+    yield put(changeRoute(ADVENTURERS));
   } catch(err) {
     //  Handle error with an action
   }

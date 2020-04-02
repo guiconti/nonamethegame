@@ -6,8 +6,9 @@ import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './routes/PrivateRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Adventurers from './pages/Adventurers';
 import NotFound from './pages/NotFound';
-import { HOME, LOGIN } from '../constants/routes';
+import { HOME, ADVENTURERS, LOGIN } from '../constants/routes';
 import Cookies from 'js-cookie';
 import { signedIn, signedOut } from '../actions/authActions';
 import { hot } from 'react-hot-loader';
@@ -26,6 +27,7 @@ const App = () => {
   return (
     <Switch>
       <PrivateRoute exact path={HOME} component={Home} />
+      <PrivateRoute exact path={ADVENTURERS} component={Adventurers} />
       <Route exact path={LOGIN} component={Login} />
       <Route component={NotFound} />
     </Switch>
