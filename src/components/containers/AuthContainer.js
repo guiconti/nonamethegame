@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import LoginForm from '../elements/auth/LoginForm';
 import RegisterForm from '../elements/auth/RegisterForm';
-import { fetchRegister } from '../../actions/authActions';
+import { fetchRegister, fetchSignIn } from '../../actions/authActions';
 
 const AuthContainer = () => {
   const dispatch = useDispatch();
@@ -14,6 +14,11 @@ const AuthContainer = () => {
   const register = (e) => {
     e.preventDefault();
     dispatch(fetchRegister({ email, password }));
+  }
+  
+  const signIn = (e) => {
+    e.preventDefault();
+    dispatch(fetchSignIn({ email, password }));
   }
 
   return (
@@ -36,6 +41,7 @@ const AuthContainer = () => {
           setEmail={setEmail}
           setPassword={setPassword}
           toggleIsRegistering={toggleIsRegistering}
+          signIn={signIn}
         />
       )}
     </>

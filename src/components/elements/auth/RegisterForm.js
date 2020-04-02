@@ -68,12 +68,12 @@ const RegisterForm = ({
           onChange={e => setConfirmPassword(e.target.value)}
         />
         <Button
-          onClick={register}
           type="submit"
           fullWidth
           variant="contained"
           color="primary"
           className="submit"
+          onClick={register}
         >
           Register
         </Button>
@@ -82,7 +82,7 @@ const RegisterForm = ({
             <Link variant="body2">Forgot password?</Link>
           </Grid>
           <Grid item>
-            <Link onClick={() => toggleIsRegistering(false)} variant="body2">
+            <Link variant="body2" onClick={() => toggleIsRegistering(false)} >
               {'Already have an account? Sign In'}
             </Link>
           </Grid>
