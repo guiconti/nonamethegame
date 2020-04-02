@@ -1,22 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import LoginForm from '../elements/auth/LoginForm';
-import RegisterForm from '../elements/auth/RegisterForm';
-import { fetchRegister, fetchSignIn } from '../../actions/authActions';
-import { getLoading } from '../../reducers/selectors';
 import ListAdventurers from '../elements/adventurer/ListAdventurers';
+import ConfirmNewAdventurer from '../elements/adventurer/ConfirmNewAdventurer';
 
 const SelectAdventurerContainer = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const [showAdventurerCreation, setShowAdventurerCreation] = useState(false);
+
+  const confirmAdventurerCreation = e => {
+    e.preventDefault();
+    setShowAdventurerCreation(true);
+  }
+
+  const closeAdventurerCreation = e => {
+    e.preventDefault();
+    setShowAdventurerCreation(false);
+  }
 
   const createAdventurer = e => {
     e.preventDefault();
+    setShowAdventurerCreation(false);
     console.log('Create an adventurer');
   }
 
   return (
     <>
-      <ListAdventurers createAdventurer={createAdventurer} />
+      <ListAdventurers createAdventurer={confirmAdventurerCreation} />
+      <ConfirmNewAdventurer
+        showAdventurerCreation={showAdventurerCreation}
+        handleClose={closeAdventurerCreation}
+        handleConfirm={createAdventurer}
+        handleCancel={closeAdventurerCreation}
+      />
     </>
   );
 };
