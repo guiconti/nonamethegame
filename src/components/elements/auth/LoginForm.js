@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
@@ -9,7 +10,15 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import './styles/loginForm.scss';
 
-const LoginForm = ({ email, password, setEmail, setPassword, toggleIsRegistering, signIn }) => {
+const LoginForm = ({
+  email,
+  password,
+  setEmail,
+  setPassword,
+  toggleIsRegistering,
+  loading,
+  signIn
+}) => {
   return (
     <div className="paper">
       <Avatar className="avatar">
@@ -51,16 +60,19 @@ const LoginForm = ({ email, password, setEmail, setPassword, toggleIsRegistering
           variant="contained"
           color="primary"
           className="submit"
+          disabled={loading}
           onClick={signIn}
         >
-          Sign In
+          {loading ? <CircularProgress /> : 'Sign in'}
         </Button>
         <Grid container>
           <Grid item xs>
-            <Link variant="body2">Forgot password?</Link>
+            <Link variant="body2" disabled={loading}>
+              Forgot password?
+            </Link>
           </Grid>
           <Grid item>
-            <Link variant="body2" onClick={() => toggleIsRegistering(true)}>
+            <Link variant="body2" disabled={loading} onClick={() => toggleIsRegistering(true)}>
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>
@@ -76,6 +88,7 @@ LoginForm.propTypes = {
   setEmail: PropTypes.func.isRequired,
   setPassword: PropTypes.func.isRequired,
   toggleIsRegistering: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
   signIn: PropTypes.func.isRequired
 };
 

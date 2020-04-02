@@ -2,11 +2,12 @@ import { put, call, take, fork, all } from 'redux-saga/effects';
 import register from '../apis/register';
 import signIn from '../apis/signIn';
 import { REGISTER_FETCH, SIGN_IN_FETCH } from '../types/auth';
-import { signedIn } from '../actions/authActions';
+import { signedIn, loading } from '../actions/authActions';
 import { changeRoute } from '../actions/navigationActions';
 import { HOME } from '../constants/routes';
 
 export function* fetchRegister(payload) {
+  yield put(loading());
   try {
     yield call(register, payload);
     yield put(signedIn());
@@ -17,6 +18,7 @@ export function* fetchRegister(payload) {
 }
 
 export function* fetchSignIn(payload) {
+  yield put(loading());
   try {
     yield call(signIn, payload);
     yield put(signedIn());

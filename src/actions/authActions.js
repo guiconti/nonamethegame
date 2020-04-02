@@ -1,4 +1,4 @@
-import { SIGNED_IN, SIGNED_OUT, REGISTER_FETCH, SIGN_IN_FETCH } from '../types/auth';
+import { SIGNED_IN, SIGNED_OUT, REGISTER_FETCH, SIGN_IN_FETCH, LOADING } from '../types/auth';
 
 export function signedIn() {
   return {
@@ -23,5 +23,11 @@ export function fetchSignIn(payload) {
   return {
     type: SIGN_IN_FETCH,
     payload,
+  };
+}
+
+export function loading() {
+  return {
+    type: LOADING,
   };
 }

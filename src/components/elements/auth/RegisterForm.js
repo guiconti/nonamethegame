@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -17,6 +18,7 @@ const RegisterForm = ({
   setPassword,
   setConfirmPassword,
   toggleIsRegistering,
+  loading,
   register
 }) => {
   return (
@@ -73,16 +75,19 @@ const RegisterForm = ({
           variant="contained"
           color="primary"
           className="submit"
+          disabled={loading}
           onClick={register}
         >
-          Register
+          {loading ? <CircularProgress /> : 'Register'}
         </Button>
         <Grid container>
           <Grid item xs>
-            <Link variant="body2">Forgot password?</Link>
+            <Link variant="body2" disabled={loading}>
+              Forgot password?
+            </Link>
           </Grid>
           <Grid item>
-            <Link variant="body2" onClick={() => toggleIsRegistering(false)} >
+            <Link variant="body2" disabled={loading} onClick={() => toggleIsRegistering(false)}>
               {'Already have an account? Sign In'}
             </Link>
           </Grid>
@@ -100,6 +105,7 @@ RegisterForm.propTypes = {
   setPassword: PropTypes.func.isRequired,
   setConfirmPassword: PropTypes.func.isRequired,
   toggleIsRegistering: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
   register: PropTypes.func.isRequired
 };
 
