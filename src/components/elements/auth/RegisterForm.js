@@ -9,14 +9,22 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import './styles/loginForm.scss';
 
-const LoginForm = ({ email, password, setEmail, setPassword, toggleIsRegistering }) => {
+const RegisterForm = ({
+  email,
+  password,
+  confirmPassword,
+  setEmail,
+  setPassword,
+  setConfirmPassword,
+  toggleIsRegistering
+}) => {
   return (
     <div className="paper">
       <Avatar className="avatar">
         <LockOutlinedIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
-        Sign in
+        Register
       </Typography>
       <form className="form" noValidate>
         <TextField
@@ -24,7 +32,7 @@ const LoginForm = ({ email, password, setEmail, setPassword, toggleIsRegistering
           margin="normal"
           required
           fullWidth
-          id="email"
+          id="registerEmail"
           label="Email Address"
           name="email"
           autoComplete="email"
@@ -40,23 +48,36 @@ const LoginForm = ({ email, password, setEmail, setPassword, toggleIsRegistering
           name="password"
           label="Password"
           type="password"
-          id="password"
+          id="registerPassword"
           autoComplete="current-password"
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="confirmPassword"
+          label="Confirm password"
+          type="password"
+          id="confirmPassword"
+          autoComplete="confirm-password"
+          value={confirmPassword}
+          onChange={e => setConfirmPassword(e.target.value)}
+        />
         <Button type="submit" fullWidth variant="contained" color="primary" className="submit">
-          Sign In
+          Register
         </Button>
         <Grid container>
           <Grid item xs>
-          <Link variant="body2">
+            <Link variant="body2">
               Forgot password?
             </Link>
           </Grid>
           <Grid item>
-            <Link onClick={() => toggleIsRegistering(true)} variant="body2">
-              {"Don't have an account? Sign Up"}
+          <Link onClick={() => toggleIsRegistering(false)} variant="body2">
+              {'Already have an account? Sign In'}
             </Link>
           </Grid>
         </Grid>
@@ -65,12 +86,14 @@ const LoginForm = ({ email, password, setEmail, setPassword, toggleIsRegistering
   );
 };
 
-LoginForm.propTypes = {
+RegisterForm.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
+  confirmPassword: PropTypes.string.isRequired,
   setEmail: PropTypes.func.isRequired,
   setPassword: PropTypes.func.isRequired,
+  setConfirmPassword: PropTypes.func.isRequired,
   toggleIsRegistering: PropTypes.func.isRequired,
 };
 
-export default LoginForm;
+export default RegisterForm;
