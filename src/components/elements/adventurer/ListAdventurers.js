@@ -7,7 +7,7 @@ import './styles/listAdventurers.scss';
 
 const ListAdventurers = ({ createAdventurer }) => {
   return (
-    <Grid container justify="center" className="root">
+    <Grid container justify="center" className="list-adventurers">
       <SelectAdventurer />
       <SelectAdventurer />
       <SelectAdventurer />

@@ -7,8 +7,9 @@ import PrivateRoute from './routes/PrivateRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Adventurers from './pages/Adventurers';
+import CreateAdventurer from './pages/CreateAdventurer';
 import NotFound from './pages/NotFound';
-import { HOME, ADVENTURERS, LOGIN } from '../constants/routes';
+import { HOME, ADVENTURERS, NEW_ADVENTURER, LOGIN } from '../constants/routes';
 import Cookies from 'js-cookie';
 import { signedIn, signedOut } from '../actions/authActions';
 import { hot } from 'react-hot-loader';
@@ -28,6 +29,7 @@ const App = () => {
     <Switch>
       <PrivateRoute exact path={HOME} component={Home} />
       <PrivateRoute exact path={ADVENTURERS} component={Adventurers} />
+      <PrivateRoute exact path={NEW_ADVENTURER} component={CreateAdventurer} />
       <Route exact path={LOGIN} component={Login} />
       <Route component={NotFound} />
     </Switch>

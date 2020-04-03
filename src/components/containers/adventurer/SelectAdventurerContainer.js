@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import ListAdventurers from '../elements/adventurer/ListAdventurers';
-import ConfirmNewAdventurer from '../elements/adventurer/ConfirmNewAdventurer';
+import { useDispatch } from 'react-redux';
+import ListAdventurers from '../../elements/adventurer/ListAdventurers';
+import ConfirmNewAdventurer from '../../elements/adventurer/ConfirmNewAdventurer';
+import { newAdventurer } from '../../../actions/adventurerActions';
 
 const SelectAdventurerContainer = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [showAdventurerCreation, setShowAdventurerCreation] = useState(false);
 
   const confirmAdventurerCreation = e => {
@@ -20,7 +21,7 @@ const SelectAdventurerContainer = () => {
   const createAdventurer = e => {
     e.preventDefault();
     setShowAdventurerCreation(false);
-    console.log('Create an adventurer');
+    dispatch(newAdventurer());
   }
 
   return (

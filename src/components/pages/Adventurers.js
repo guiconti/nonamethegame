@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 import Header from '../elements/shared/Header';
-import SelectAdventurerContainer from '../containers/SelectAdventurerContainer';
+import SelectAdventurerContainer from '../containers/adventurer/SelectAdventurerContainer';
 
 const Adventurers = () => {
   return (

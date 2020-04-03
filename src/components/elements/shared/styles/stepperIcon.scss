@@ -1,0 +1,23 @@
+
+.stepper-icon {
+  color: #eaeaf0;
+  display: flex;
+  height: 22px;
+  align-items: center;
+}
+.stepper-icon--active {
+  color: #784af4;
+}
+
+.stepper-icon__circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.stepper-icon--completed {
+  color: #784af4;
+  z-index: 1;
+  font-size: 18px;
+}

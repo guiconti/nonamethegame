@@ -19,7 +19,7 @@ const ConfirmNewAdventurer = ({ showAdventurerCreation, handleClose, handleConfi
       handleConfirm={handleConfirm}
       handleCancel={handleCancel}
     >
-      <Typography variant="subtitle1" component="subtitle1">
+      <Typography variant="subtitle1" component="h2">
         Are you sure you want to create a new adventurer?
       </Typography>
     </ConfirmationDialog>

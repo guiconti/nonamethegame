@@ -22,14 +22,14 @@ const LoginForm = ({
   signIn
 }) => {
   return (
-    <div className="paper">
-      <Avatar className="avatar">
+    <div className="login">
+      <Avatar className="login__avatar">
         <LockOutlinedIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
         Sign in
       </Typography>
-      <form className="form" noValidate>
+      <form className="login__form" noValidate>
         <TextField
           variant="outlined"
           margin="normal"
@@ -61,7 +61,7 @@ const LoginForm = ({
           fullWidth
           variant="contained"
           color="primary"
-          className="submit"
+          className="login__submit"
           disabled={loading}
           onClick={signIn}
         >

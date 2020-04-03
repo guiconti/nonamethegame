@@ -10,7 +10,7 @@ import {
   Typography
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import './styles/loginForm.scss';
+import './styles/registerForm.scss';
 
 const RegisterForm = ({
   email,
@@ -24,14 +24,14 @@ const RegisterForm = ({
   register
 }) => {
   return (
-    <div className="paper">
-      <Avatar className="avatar">
+    <div className="register">
+      <Avatar className="register__avatar">
         <LockOutlinedIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
         Register
       </Typography>
-      <form className="form" noValidate>
+      <form className="register__form" noValidate>
         <TextField
           variant="outlined"
           margin="normal"
@@ -76,7 +76,7 @@ const RegisterForm = ({
           fullWidth
           variant="contained"
           color="primary"
-          className="submit"
+          className="register__submit"
           disabled={loading}
           onClick={register}
         >

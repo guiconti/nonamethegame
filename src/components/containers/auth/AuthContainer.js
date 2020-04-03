@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import LoginForm from '../elements/auth/LoginForm';
-import RegisterForm from '../elements/auth/RegisterForm';
-import { fetchRegister, fetchSignIn } from '../../actions/authActions';
-import { getLoading } from '../../reducers/selectors';
+import LoginForm from '../../elements/auth/LoginForm';
+import RegisterForm from '../../elements/auth/RegisterForm';
+import { fetchRegister, fetchSignIn } from '../../../actions/authActions';
+import { getLoading } from '../../../reducers/selectors';
 
 const AuthContainer = () => {
   const dispatch = useDispatch();
