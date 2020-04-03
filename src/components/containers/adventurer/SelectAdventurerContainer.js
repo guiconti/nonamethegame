@@ -1,35 +1,48 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ListAdventurers from '../../elements/adventurer/ListAdventurers';
 import ConfirmNewAdventurer from '../../elements/adventurer/ConfirmNewAdventurer';
-import { newAdventurer } from '../../../actions/adventurerActions';
+import { fetchListAdventurers, newAdventurer } from '../../../actions/adventurerActions';
+import { getAdventurerLoading, getAdventurers } from '../../../reducers/selectors';
 
 const SelectAdventurerContainer = () => {
   const dispatch = useDispatch();
+  const loading = useSelector(getAdventurerLoading);
+  const adventurers = useSelector(getAdventurers);
   const [showAdventurerCreation, setShowAdventurerCreation] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchListAdventurers());
+  }, []);
 
   const confirmAdventurerCreation = () => {
     setShowAdventurerCreation(true);
-  }
+  };
 
-  const closeAdventurerCreation = ()=> {
+  const closeAdventurerCreation = () => {
     setShowAdventurerCreation(false);
-  }
+  };
 
   const createAdventurer = () => {
     setShowAdventurerCreation(false);
     dispatch(newAdventurer());
-  }
+  };
 
   return (
     <>
-      <ListAdventurers createAdventurer={confirmAdventurerCreation} />
-      <ConfirmNewAdventurer
-        showAdventurerCreation={showAdventurerCreation}
-        handleClose={closeAdventurerCreation}
-        handleConfirm={createAdventurer}
-        handleCancel={closeAdventurerCreation}
-      />
+      {loading ? (
+        <p>Loading</p>
+      ) : (
+        <>
+          <ListAdventurers adventurers={adventurers} createAdventurer={confirmAdventurerCreation} />
+          <ConfirmNewAdventurer
+            showAdventurerCreation={showAdventurerCreation}
+            handleClose={closeAdventurerCreation}
+            handleConfirm={createAdventurer}
+            handleCancel={closeAdventurerCreation}
+          />
+        </>
+      )}
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { put, call, take, fork, all } from 'redux-saga/effects';
+import Cookies from 'js-cookie';
 import register from '../apis/register';
 import signIn from '../apis/signIn';
 import { REGISTER_FETCH, SIGN_IN_FETCH } from '../types/auth';
@@ -9,7 +10,8 @@ import { ADVENTURERS } from '../constants/routes';
 export function* fetchRegister(payload) {
   yield put(loading());
   try {
-    yield call(register, payload);
+    const response = yield call(register, payload);
+    Cookies.set('session', response.data.session);
     yield put(signedIn());
     yield put(changeRoute(ADVENTURERS));
   } catch(err) {
@@ -20,7 +22,8 @@ export function* fetchRegister(payload) {
 export function* fetchSignIn(payload) {
   yield put(loading());
   try {
-    yield call(signIn, payload);
+    const response = yield call(signIn, payload);
+    Cookies.set('session', response.data.session);
     yield put(signedIn());
     yield put(changeRoute(ADVENTURERS));
   } catch(err) {

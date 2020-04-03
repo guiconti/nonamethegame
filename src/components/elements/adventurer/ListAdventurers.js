@@ -5,18 +5,19 @@ import SelectAdventurer from './SelectAdventurer';
 import CreateAdventurer from './CreateAdventurer';
 import './styles/listAdventurers.scss';
 
-const ListAdventurers = ({ createAdventurer }) => {
+const ListAdventurers = ({ adventurers, createAdventurer }) => {
   return (
     <Grid container justify="center" className="list-adventurers">
-      <SelectAdventurer />
-      <SelectAdventurer />
-      <SelectAdventurer />
+      {
+        adventurers.map(adventurer => <SelectAdventurer key={adventurer._id} />)
+      }
       <CreateAdventurer createAdventurer={createAdventurer} />
     </Grid>
   );
 };
 
 ListAdventurers.propTypes = {
+  adventurers: PropTypes.array.isRequired,
   createAdventurer: PropTypes.func.isRequired,
 };
 

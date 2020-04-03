@@ -1,13 +1,25 @@
 import { put, call, take, fork, all } from 'redux-saga/effects';
 import {
+  FETCH_LIST_ADVENTURERS,
   CREATE_NEW_ADVENTURER,
   EXIT_ADVENTURER_CREATION,
   FETCH_CREATE_ADVENTURER
 } from '../types/adventurer';
 import { changeRoute } from '../actions/navigationActions';
-import { loading } from '../actions/adventurerActions';
+import { loading, adventurersList } from '../actions/adventurerActions';
+import listAdventurers from '../apis/listAdventurers';
 import createAdventurer from '../apis/createAdventurer';
 import { NEW_ADVENTURER, ADVENTURERS } from '../constants/routes';
+
+export function* fetchListAdventurers() {
+  yield put(loading());
+  try {
+    const response = yield call(listAdventurers);
+    yield put(adventurersList(response.data));
+  } catch(err) {
+    //  Handle error with an action
+  }
+}
 
 export function* createNewAdventurer() {
   yield put(changeRoute(NEW_ADVENTURER));
@@ -21,10 +33,16 @@ export function* fetchCreateAdventurer(payload) {
   yield put(loading());
   try {
     yield call(createAdventurer, payload);
-    // yield put(signedIn());
-    // yield put(changeRoute(ADVENTURERS));
+    yield put(changeRoute(ADVENTURERS));
   } catch(err) {
     //  Handle error with an action
+  }
+}
+
+function* watchFetchListAdventurers() {
+  while (true) {
+    yield take(FETCH_LIST_ADVENTURERS);
+    yield call(fetchListAdventurers);
   }
 }
 
@@ -51,6 +69,7 @@ function* watchFetchCreateAdventurer() {
 
 export default function* watch() {
   yield all([
+    fork(watchFetchListAdventurers),
     fork(watchCreateNewAdventurer),
     fork(watchExitAdventurerCreation),
     fork(watchFetchCreateAdventurer)

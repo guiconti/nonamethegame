@@ -5,5 +5,6 @@ export default {
   },
   adventurer: {
     loading: false,
+    userAdventurers: [],
   }
 };

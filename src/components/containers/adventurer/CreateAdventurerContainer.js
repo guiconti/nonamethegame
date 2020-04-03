@@ -76,9 +76,9 @@ const CreateAdventurerContainer = () => {
     if (!loading) {
       const payload = {
         name,
-        class: selectedClass,
-        race: selectedRace,
-        gender: selectedGender,
+        selectedClass,
+        selectedRace,
+        selectedGender,
         attributes,
       };
       dispatch(fetchCreateAdventurer(payload));
