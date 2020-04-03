@@ -6,6 +6,7 @@ import CreateAdventurerBiography from '../../elements/adventurer/CreateAdventure
 import CreateAdventurerAttributes from '../../elements/adventurer/CreateAdventurerAttributes';
 import CreateAdventurerTraits from '../../elements/adventurer/CreateAdventurerTraits';
 import CreateAdventurerActions from '../../elements/adventurer/CreateAdventurerActions';
+import ConfirmAdventurerCreation from '../../elements/adventurer/ConfirmAdventurerCreation';
 import { exitAdventurerCreation } from '../../../actions/adventurerActions';
 import {
   CREATION_STEPS,
@@ -21,10 +22,11 @@ const CreateAdventurerContainer = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [name, setName] = useState('');
   const [selectedClass, setSelectedClass] = useState('');
-  const [selectedGender, setSelectedGener] = useState('');
   const [selectedRace, setSelectedRace] = useState('');
+  const [selectedGender, setSelectedGener] = useState('');
+  const [showAdventurerCreation, setShowAdventurerCreation] = useState(false);
   const [pointsLeft, setPointsLeft] = useState(STARTING_POINTS);
-  const [attributes, setAttributes] = useState(NEW_ADVENTURER_ATTRIBUTES);
+  const [attributes, setAttributes] = useState(JSON.parse(JSON.stringify(NEW_ADVENTURER_ATTRIBUTES)));
 
   const handleNext = () => {
     setActiveStep(previousActiveStep => previousActiveStep + 1);
@@ -37,6 +39,10 @@ const CreateAdventurerContainer = () => {
       setActiveStep(previousActiveStep => previousActiveStep - 1);
     }
   };
+
+  const handleFinish = () => {
+    setShowAdventurerCreation(true);
+  }
 
   const reduceAttribute = attribute => {
     if (attributes[attribute] > 1) {
@@ -58,6 +64,16 @@ const CreateAdventurerContainer = () => {
     }
   };
 
+  const closeAdventurerCreation = () => {
+    setShowAdventurerCreation(false);
+  }
+
+  const createAdventurer = () => {
+    setShowAdventurerCreation(false);
+    console.log('Call API!');
+    // dispatch(newAdventurer());
+  }
+
   const stepsComponents = [
     <CreateAdventurerBiography
       key={0}
@@ -66,12 +82,12 @@ const CreateAdventurerContainer = () => {
       classes={CLASSES}
       selectedClass={selectedClass}
       onSelectClass={setSelectedClass}
-      genders={GENDERS}
-      selectedGender={selectedGender}
-      onSelectGender={setSelectedGener}
       races={RACES}
       selectedRace={selectedRace}
       onSelectRace={setSelectedRace}
+      genders={GENDERS}
+      selectedGender={selectedGender}
+      onSelectGender={setSelectedGener}
     />,
     <CreateAdventurerAttributes
       key={1}
@@ -91,9 +107,21 @@ const CreateAdventurerContainer = () => {
         <CreateAdventurerActions
           handleNext={handleNext}
           handleBack={handleBack}
+          handleFinish={handleFinish}
           isLastStep={activeStep >= CREATION_STEPS.length - 1}
         />
       </Grid>
+      <ConfirmAdventurerCreation
+        showAdventurerCreation={showAdventurerCreation}
+        handleClose={closeAdventurerCreation}
+        handleConfirm={createAdventurer}
+        handleCancel={closeAdventurerCreation}
+        name={name}
+        selectedClass={selectedClass}
+        selectedRace={selectedRace}
+        selectedGender={selectedGender}
+        attributes={attributes}
+      />
     </>
   );
 };

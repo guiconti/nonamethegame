@@ -33,9 +33,9 @@ const CreateAdventurerAttributes = ({
         {attributes &&
           Object.keys(attributes).map(currentAttribute => (
             <Grid key={currentAttribute} item xs={12}>
-              <Grid container>
+              <Grid container alignItems="center">
                 <Grid item xs={6}>
-                  <Typography class="create-adventurer-attributes__attribute-text">
+                  <Typography className="create-adventurer-attributes__attribute-text" variant="body2">
                     {currentAttribute}: {attributes[currentAttribute]}
                   </Typography>
                 </Grid>
@@ -72,7 +72,7 @@ CreateAdventurerAttributes.propTypes = {
   pointsLeft: PropTypes.number.isRequired,
   attributes: PropTypes.object.isRequired,
   reduceAttribute: PropTypes.func.isRequired,
-  increateAttribute: PropTypes.func.isRequired
+  increaseAttribute: PropTypes.func.isRequired
 };
 
 export default CreateAdventurerAttributes;

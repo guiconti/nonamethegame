@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { Grid, Button } from '@material-ui/core';
 import './styles/createAdventurerStepper.scss';
 
-const CreateAdventurerActions = ({ handleNext, handleBack, isLastStep }) => {
+const CreateAdventurerActions = ({ handleNext, handleBack, handleFinish, isLastStep }) => {
   return (
     <Grid item xs={12} align="end">
       <Button className="button" onClick={handleBack}>
         Back
       </Button>
       {isLastStep ? (
-        <Button className="button" variant="contained" color="primary">
+        <Button className="button" variant="contained" color="primary" onClick={handleFinish}>
           Finish
         </Button>
       ) : (
@@ -25,6 +25,7 @@ const CreateAdventurerActions = ({ handleNext, handleBack, isLastStep }) => {
 CreateAdventurerActions.propTypes = {
   handleNext: PropTypes.func.isRequired,
   handleBack: PropTypes.func.isRequired,
+  handleFinish: PropTypes.func.isRequired,
   isLastStep: PropTypes.bool.isRequired
 };
 

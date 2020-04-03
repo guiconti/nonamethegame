@@ -8,18 +8,15 @@ const SelectAdventurerContainer = () => {
   const dispatch = useDispatch();
   const [showAdventurerCreation, setShowAdventurerCreation] = useState(false);
 
-  const confirmAdventurerCreation = e => {
-    e.preventDefault();
+  const confirmAdventurerCreation = () => {
     setShowAdventurerCreation(true);
   }
 
-  const closeAdventurerCreation = e => {
-    e.preventDefault();
+  const closeAdventurerCreation = ()=> {
     setShowAdventurerCreation(false);
   }
 
-  const createAdventurer = e => {
-    e.preventDefault();
+  const createAdventurer = () => {
     setShowAdventurerCreation(false);
     dispatch(newAdventurer());
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid, Stepper, Step, StepLabel, StepConnector, Button } from '@material-ui/core';
+import { Stepper, Step, StepLabel, StepConnector } from '@material-ui/core';
 import StepperIcon from '../shared/StepperIcon';
 import './styles/createAdventurerStepper.scss';
 

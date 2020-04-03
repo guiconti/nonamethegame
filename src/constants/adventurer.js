@@ -8,5 +8,5 @@ export const NEW_ADVENTURER_ATTRIBUTES = {
 };
 export const STARTING_POINTS = 9;
 export const CLASSES = ['Swordsman', 'Mage', 'Thief'];
-export const GENDERS = ['Male', 'Female'];
 export const RACES = ['Human', 'Lizard', 'Undead', 'Dwarf', 'Elf'];
+export const GENDERS = ['Male', 'Female'];

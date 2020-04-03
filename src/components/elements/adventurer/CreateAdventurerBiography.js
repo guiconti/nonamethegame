@@ -21,12 +21,12 @@ const CreateAdventurerBiography = ({
   classes,
   selectedClass,
   onSelectClass,
-  genders,
-  selectedGender,
-  onSelectGender,
   races,
   selectedRace,
-  onSelectRace
+  onSelectRace,
+  genders,
+  selectedGender,
+  onSelectGender
 }) => {
   return (
     <Grid
@@ -115,12 +115,12 @@ CreateAdventurerBiography.propTypes = {
   classes: PropTypes.array.isRequired,
   selectedClass: PropTypes.string,
   onSelectClass: PropTypes.func.isRequired,
+  races: PropTypes.array.isRequired,
+  selectedRace: PropTypes.string,
+  onSelectRace: PropTypes.func.isRequired,
   genders: PropTypes.array.isRequired,
   selectedGender: PropTypes.string,
   onSelectGender: PropTypes.func.isRequired,
-  races: PropTypes.array.isRequired,
-  selectedRace: PropTypes.string,
-  onSelectRace: PropTypes.func.isRequired
 };
 
 export default CreateAdventurerBiography;
