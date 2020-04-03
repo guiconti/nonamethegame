@@ -7,9 +7,9 @@ import './styles/createAdventurer.scss';
 const CreateAdventurer = ({ createAdventurer }) => {
   return (
     <Grid item align="center" xs={12} sm={6} md={3}>
-      <Card className="card" onClick={createAdventurer}>
-        <CardContent className="card-content">
-          <AddCircleOutlineIcon className="icon" />
+      <Card className="create-adventurer__card" onClick={createAdventurer}>
+        <CardContent className="create-adventurer__card-content">
+          <AddCircleOutlineIcon className="create-adventurer__card-icon" />
           Create a new adventurer!
         </CardContent>
       </Card>
