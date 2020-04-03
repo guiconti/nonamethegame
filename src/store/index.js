@@ -14,7 +14,7 @@ const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['router'],
+  whitelist: ['auth'],
 };
 
 function configureStoreProd(initialState) {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Grid } from '@material-ui/core';
 import CreateAdventurerStepper from '../../elements/adventurer/CreateAdventurerStepper';
 import CreateAdventurerBiography from '../../elements/adventurer/CreateAdventurerBiography';
@@ -7,7 +7,8 @@ import CreateAdventurerAttributes from '../../elements/adventurer/CreateAdventur
 import CreateAdventurerTraits from '../../elements/adventurer/CreateAdventurerTraits';
 import CreateAdventurerActions from '../../elements/adventurer/CreateAdventurerActions';
 import ConfirmAdventurerCreation from '../../elements/adventurer/ConfirmAdventurerCreation';
-import { exitAdventurerCreation } from '../../../actions/adventurerActions';
+import { exitAdventurerCreation, fetchCreateAdventurer } from '../../../actions/adventurerActions';
+import { getAdventurerLoading } from '../../../reducers/selectors';
 import {
   CREATION_STEPS,
   NEW_ADVENTURER_ATTRIBUTES,
@@ -19,6 +20,7 @@ import {
 
 const CreateAdventurerContainer = () => {
   const dispatch = useDispatch();
+  const loading = useSelector(getAdventurerLoading);
   const [activeStep, setActiveStep] = useState(0);
   const [name, setName] = useState('');
   const [selectedClass, setSelectedClass] = useState('');
@@ -65,13 +67,22 @@ const CreateAdventurerContainer = () => {
   };
 
   const closeAdventurerCreation = () => {
-    setShowAdventurerCreation(false);
+    if (!loading) {
+      setShowAdventurerCreation(false);
+    }
   }
 
   const createAdventurer = () => {
-    setShowAdventurerCreation(false);
-    console.log('Call API!');
-    // dispatch(newAdventurer());
+    if (!loading) {
+      const payload = {
+        name,
+        class: selectedClass,
+        race: selectedRace,
+        gender: selectedGender,
+        attributes,
+      };
+      dispatch(fetchCreateAdventurer(payload));
+    }
   }
 
   const stepsComponents = [
@@ -121,6 +132,7 @@ const CreateAdventurerContainer = () => {
         selectedRace={selectedRace}
         selectedGender={selectedGender}
         attributes={attributes}
+        loading={loading}
       />
     </>
   );

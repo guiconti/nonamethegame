@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@material-ui/core';
-// import './styles/header.scss';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  CircularProgress
+} from '@material-ui/core';
 
 const ConfirmationDialog = ({
   children,
@@ -12,18 +18,19 @@ const ConfirmationDialog = ({
   confirmText,
   cancelText,
   handleConfirm,
-  handleCancel
+  handleCancel,
+  loading
 }) => {
   return (
     <Dialog onClose={handleClose} open={show} fullScreen={fullScreen}>
       <DialogTitle>{title}</DialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>
-        <Button onClick={handleCancel} color="primary">
+        <Button color="primary" disabled={loading} onClick={handleCancel}>
           {cancelText}
         </Button>
-        <Button onClick={handleConfirm} color="primary">
-          {confirmText}
+        <Button color="primary" disabled={loading} onClick={handleConfirm}>
+          {loading ? <CircularProgress /> : confirmText}
         </Button>
       </DialogActions>
     </Dialog>
@@ -39,7 +46,8 @@ ConfirmationDialog.propTypes = {
   confirmText: PropTypes.string.isRequired,
   cancelText: PropTypes.string.isRequired,
   handleConfirm: PropTypes.func.isRequired,
-  handleCancel: PropTypes.func.isRequired
+  handleCancel: PropTypes.func.isRequired,
+  loading: PropTypes.bool
 };
 
 export default ConfirmationDialog;

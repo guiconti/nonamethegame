@@ -3,4 +3,7 @@ export default {
     signedIn: false,
     loading: false,
   },
+  adventurer: {
+    loading: false,
+  }
 };

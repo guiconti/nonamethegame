@@ -14,7 +14,8 @@ const ConfirmAdventurerCreation = ({
   selectedClass,
   selectedRace,
   selectedGender,
-  attributes
+  attributes,
+  loading
 }) => {
   const theme = useTheme();
   const belowSm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -28,9 +29,10 @@ const ConfirmAdventurerCreation = ({
       cancelText="No, this sucks"
       handleConfirm={handleConfirm}
       handleCancel={handleCancel}
+      loading={loading}
     >
       <Grid container>
-        <Grid xs={12} md={6}>
+        <Grid item xs={12} md={6}>
           <Typography variant="subtitle1" component="h2">
             Name: {name}
           </Typography>
@@ -44,7 +46,7 @@ const ConfirmAdventurerCreation = ({
             Gender: {selectedGender}
           </Typography>
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid item xs={12} md={6}>
           {attributes &&
             Object.keys(attributes).map(currentAttribute => (
               <Typography key={currentAttribute} variant="subtitle1" component="h2">
@@ -73,6 +75,7 @@ ConfirmAdventurerCreation.propTypes = {
   selectedRace: PropTypes.string.isRequired,
   selectedGender: PropTypes.string.isRequired,
   attributes: PropTypes.object.isRequired,
+  loading: PropTypes.bool,
 };
 
 export default ConfirmAdventurerCreation;

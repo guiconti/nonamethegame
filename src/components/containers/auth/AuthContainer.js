@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from '../../elements/auth/LoginForm';
 import RegisterForm from '../../elements/auth/RegisterForm';
 import { fetchRegister, fetchSignIn } from '../../../actions/authActions';
-import { getLoading } from '../../../reducers/selectors';
+import { getAuthLoading } from '../../../reducers/selectors';
 
 const AuthContainer = () => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const AuthContainer = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isRegistering, toggleIsRegistering] = useState(false);
-  const loading = useSelector(getLoading);
+  const loading = useSelector(getAuthLoading);
 
   const register = (e) => {
     e.preventDefault();
