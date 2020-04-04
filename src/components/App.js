@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './routes/PrivateRoute';
-import Home from './pages/Home';
+import Game from './pages/Game';
 import Login from './pages/Login';
 import Adventurers from './pages/Adventurers';
 import CreateAdventurer from './pages/CreateAdventurer';
@@ -27,7 +27,7 @@ const App = () => {
 
   return (
     <Switch>
-      <PrivateRoute exact path={HOME} component={Home} />
+      <PrivateRoute exact path={HOME} component={Game} />
       <PrivateRoute exact path={ADVENTURERS} component={Adventurers} />
       <PrivateRoute exact path={NEW_ADVENTURER} component={CreateAdventurer} />
       <Route exact path={LOGIN} component={Login} />

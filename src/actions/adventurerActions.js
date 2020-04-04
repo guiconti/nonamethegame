@@ -3,6 +3,7 @@ import {
   FETCH_LIST_ADVENTURERS,
   ADVENTURERS_LIST,
   FETCH_SELECT_ADVENTURER,
+  FETCH_ADVENTURER_INFO,
   ADVENTURER_INFO,
   CREATE_NEW_ADVENTURER,
   EXIT_ADVENTURER_CREATION,
@@ -32,6 +33,12 @@ export function fetchSelectAdventurer(payload) {
   return {
     type: FETCH_SELECT_ADVENTURER,
     payload
+  };
+}
+
+export function fetchAdventurerInfo() {
+  return {
+    type: FETCH_ADVENTURER_INFO
   };
 }
 
