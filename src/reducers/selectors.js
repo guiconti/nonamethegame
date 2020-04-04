@@ -12,3 +12,4 @@ export const getAdventurerMana = state => state.adventurer.info.mana;
 export const getAdventurerCurrentMana = state => state.adventurer.info.currentMana;
 export const getAdventurerClass = state => state.adventurer.info.class;
 export const getAdventurerRace = state => state.adventurer.info.race;
+export const getGameMap = state => state.game.map;

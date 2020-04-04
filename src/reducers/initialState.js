@@ -7,5 +7,8 @@ export default {
     loading: false,
     userAdventurers: [],
     info: {},
-  }
+  },
+  game: {
+    map: [],
+  },
 };
