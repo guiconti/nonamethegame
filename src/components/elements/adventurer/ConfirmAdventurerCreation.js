@@ -55,7 +55,7 @@ const ConfirmAdventurerCreation = ({
             ))
           }
         </Grid>
-        <Grid xs={12}>
+        <Grid item xs={12}>
           <Typography variant="subtitle1" component="h2">
             Is this how you want your new adventurer?
           </Typography>

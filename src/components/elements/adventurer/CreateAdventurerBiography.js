@@ -13,6 +13,7 @@ import {
   FormControlLabel,
   Radio
 } from '@material-ui/core';
+import { MAXIMUM_NAME_LENGTH } from '../../../constants/adventurer';
 import './styles/createAdventurerBiography.scss';
 
 const CreateAdventurerBiography = ({
@@ -49,6 +50,7 @@ const CreateAdventurerBiography = ({
             name="name"
             autoComplete="name"
             autoFocus
+            inputProps={{maxLength: MAXIMUM_NAME_LENGTH}}
             value={name}
             onChange={e => onChangeName(e.target.value)}
           />

@@ -6,6 +6,7 @@ export const NEW_ADVENTURER_ATTRIBUTES = {
   'dexterity': 1,
   'vitality': 1
 };
+export const MAXIMUM_NAME_LENGTH = 26;
 export const STARTING_POINTS = 9;
 export const CLASSES = ['Swordsman', 'Mage', 'Thief'];
 export const RACES = ['Human', 'Lizard', 'Undead', 'Dwarf', 'Elf'];

@@ -1,9 +1,21 @@
 .select-adventurer__card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   height: 350px;
   width: 250px;
   padding: 4px;
   margin-bottom: 32px;
+}
+
+.select_adventurer__name {
+  text-overflow: ellipsis;
+}
+
+.select-adventurer__card-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.select-adventurer__card-actions {
+  display: block;
 }

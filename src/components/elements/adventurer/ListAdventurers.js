@@ -8,9 +8,16 @@ import './styles/listAdventurers.scss';
 const ListAdventurers = ({ adventurers, createAdventurer }) => {
   return (
     <Grid container justify="center" className="list-adventurers">
-      {
-        adventurers.map(adventurer => <SelectAdventurer key={adventurer._id} />)
-      }
+      {adventurers.map((adventurer) => (
+        <SelectAdventurer
+          key={adventurer._id}
+          _id={adventurer._id}
+          name={adventurer.name}
+          level={adventurer.level}
+          _class={adventurer.class}
+          race={adventurer.race}
+        />
+      ))}
       <CreateAdventurer createAdventurer={createAdventurer} />
     </Grid>
   );
