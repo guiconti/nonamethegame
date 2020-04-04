@@ -2,6 +2,8 @@ import {
   ADVENTURER_LOADING,
   FETCH_LIST_ADVENTURERS,
   ADVENTURERS_LIST,
+  FETCH_SELECT_ADVENTURER,
+  ADVENTURER_INFO,
   CREATE_NEW_ADVENTURER,
   EXIT_ADVENTURER_CREATION,
   FETCH_CREATE_ADVENTURER
@@ -24,6 +26,20 @@ export function adventurersList(payload) {
     type: ADVENTURERS_LIST,
     payload
   };
+}
+
+export function fetchSelectAdventurer(payload) {
+  return {
+    type: FETCH_SELECT_ADVENTURER,
+    payload
+  };
+}
+
+export function updateAdventurerInfo(payload) {
+  return {
+    type: ADVENTURER_INFO,
+    payload
+  }
 }
 
 export function newAdventurer() {

@@ -1,21 +1,45 @@
 import { put, call, take, fork, all } from 'redux-saga/effects';
 import {
   FETCH_LIST_ADVENTURERS,
+  FETCH_ADVENTURER_INFO,
+  FETCH_SELECT_ADVENTURER,
   CREATE_NEW_ADVENTURER,
   EXIT_ADVENTURER_CREATION,
   FETCH_CREATE_ADVENTURER
 } from '../types/adventurer';
 import { changeRoute } from '../actions/navigationActions';
-import { loading, adventurersList } from '../actions/adventurerActions';
+import { loading, adventurersList, updateAdventurerInfo } from '../actions/adventurerActions';
 import listAdventurers from '../apis/listAdventurers';
+import selectAdventurer from '../apis/selectAdventurer';
+import adventurerInfo from '../apis/adventurerInfo';
 import createAdventurer from '../apis/createAdventurer';
-import { NEW_ADVENTURER, ADVENTURERS } from '../constants/routes';
+import { NEW_ADVENTURER, ADVENTURERS, HOME } from '../constants/routes';
 
 export function* fetchListAdventurers() {
   yield put(loading());
   try {
     const response = yield call(listAdventurers);
     yield put(adventurersList(response.data));
+  } catch(err) {
+    //  Handle error with an action
+  }
+}
+
+export function* fetchSelectAdventurer(payload) {
+  yield put(loading());
+  try {
+    const response = yield call(selectAdventurer, payload);
+    yield put(updateAdventurerInfo(response.data));
+    yield put(changeRoute(HOME));
+  } catch(err) {
+    //  Handle error with an action
+  }
+}
+
+export function* fetchAdventurerInfo(payload) {
+  try {
+    const response = yield call(adventurerInfo, payload);
+    yield put(updateAdventurerInfo(response.data));
   } catch(err) {
     //  Handle error with an action
   }
@@ -46,6 +70,20 @@ function* watchFetchListAdventurers() {
   }
 }
 
+function* watchFetchSelectAdventurer() {
+  while (true) {
+    const { payload } = yield take(FETCH_SELECT_ADVENTURER);
+    yield call(fetchSelectAdventurer, payload);
+  }
+}
+
+function* watchFetchAdventurerInfo() {
+  while (true) {
+    const { payload } = yield take(FETCH_ADVENTURER_INFO);
+    yield call(fetchAdventurerInfo, payload);
+  }
+}
+
 function* watchCreateNewAdventurer() {
   while (true) {
     yield take(CREATE_NEW_ADVENTURER);
@@ -70,6 +108,8 @@ function* watchFetchCreateAdventurer() {
 export default function* watch() {
   yield all([
     fork(watchFetchListAdventurers),
+    fork(watchFetchSelectAdventurer),
+    fork(watchFetchAdventurerInfo),
     fork(watchCreateNewAdventurer),
     fork(watchExitAdventurerCreation),
     fork(watchFetchCreateAdventurer)

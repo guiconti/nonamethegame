@@ -5,7 +5,7 @@ import SelectAdventurer from './SelectAdventurer';
 import CreateAdventurer from './CreateAdventurer';
 import './styles/listAdventurers.scss';
 
-const ListAdventurers = ({ adventurers, createAdventurer }) => {
+const ListAdventurers = ({ adventurers, selectAdventurer, createAdventurer }) => {
   return (
     <Grid container justify="center" className="list-adventurers">
       {adventurers.map((adventurer) => (
@@ -16,6 +16,7 @@ const ListAdventurers = ({ adventurers, createAdventurer }) => {
           level={adventurer.level}
           _class={adventurer.class}
           race={adventurer.race}
+          selectAdventurer={selectAdventurer}
         />
       ))}
       <CreateAdventurer createAdventurer={createAdventurer} />
@@ -25,6 +26,7 @@ const ListAdventurers = ({ adventurers, createAdventurer }) => {
 
 ListAdventurers.propTypes = {
   adventurers: PropTypes.array.isRequired,
+  selectAdventurer: PropTypes.func.isRequired,
   createAdventurer: PropTypes.func.isRequired,
 };
 

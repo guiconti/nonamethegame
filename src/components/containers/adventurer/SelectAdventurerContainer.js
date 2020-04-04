@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ListAdventurers from '../../elements/adventurer/ListAdventurers';
 import ConfirmNewAdventurer from '../../elements/adventurer/ConfirmNewAdventurer';
-import { fetchListAdventurers, newAdventurer } from '../../../actions/adventurerActions';
+import { fetchListAdventurers, fetchSelectAdventurer, newAdventurer } from '../../../actions/adventurerActions';
 import { getAdventurerLoading, getAdventurers } from '../../../reducers/selectors';
 
 const SelectAdventurerContainer = () => {
@@ -14,6 +14,10 @@ const SelectAdventurerContainer = () => {
   useEffect(() => {
     dispatch(fetchListAdventurers());
   }, []);
+
+  const selectAdventurer = id => {
+    dispatch(fetchSelectAdventurer({ id }));
+  };
 
   const confirmAdventurerCreation = () => {
     setShowAdventurerCreation(true);
@@ -34,7 +38,11 @@ const SelectAdventurerContainer = () => {
         <p>Loading</p>
       ) : (
         <>
-          <ListAdventurers adventurers={adventurers} createAdventurer={confirmAdventurerCreation} />
+          <ListAdventurers
+            adventurers={adventurers}
+            createAdventurer={confirmAdventurerCreation}
+            selectAdventurer={selectAdventurer}
+          />
           <ConfirmNewAdventurer
             showAdventurerCreation={showAdventurerCreation}
             handleClose={closeAdventurerCreation}
