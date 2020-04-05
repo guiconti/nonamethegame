@@ -19,7 +19,6 @@ const GameMapContainer = () => {
   const draw = p5 => {
     if (!isMapDraw && gameMap.length > 0) {
       let sizeOfSquare = p5.width / gameMap.length;
-      p5.scale();
       p5.background(0);
       p5.noStroke();
       for (let i = 0; i < gameMap.length; i++) {
