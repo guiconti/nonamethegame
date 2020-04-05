@@ -1,5 +1,6 @@
 import {
   LOADING,
+  FETCH_CONNECT,
   FETCH_GAME_MAP,
   MAP_INFO,
 } from '../types/game';
@@ -7,6 +8,12 @@ import {
 export function loading() {
   return {
     type: LOADING
+  };
+}
+
+export function fetchConnect() {
+  return {
+    type: FETCH_CONNECT
   };
 }
 
