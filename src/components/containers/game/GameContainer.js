@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchConnect, connected, disconnected } from '../../../actions/gameActions';
+import {
+  fetchConnect,
+  connected,
+  disconnected,
+  updateGameMetadata,
+} from '../../../actions/gameActions';
 import webSocket from '../../../webSocket';
-import { CONNECTED } from '../../../constants/sockets';
+import { CONNECTED, GAME_METADATA } from '../../../constants/sockets';
 
 const GameContainer = () => {
   const dispatch = useDispatch();
@@ -12,15 +17,16 @@ const GameContainer = () => {
     webSocket.on(CONNECTED, () => {
       dispatch(connected());
     });
+    webSocket.on(GAME_METADATA, (metadata) => {
+      dispatch(updateGameMetadata(metadata));
+    });
     return () => {
       webSocket.close();
       dispatch(disconnected());
-    }
+    };
   }, []);
 
-  return (
-    <></>
-  );
+  return <></>;
 };
 
 export default GameContainer;

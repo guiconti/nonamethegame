@@ -7,7 +7,8 @@ import {
   ADVENTURER_INFO,
   CREATE_NEW_ADVENTURER,
   EXIT_ADVENTURER_CREATION,
-  FETCH_CREATE_ADVENTURER
+  FETCH_CREATE_ADVENTURER,
+  UPDATE_POSITION
 } from '../types/adventurer';
 
 export function loading() {
@@ -64,6 +65,13 @@ export function exitAdventurerCreation() {
 export function fetchCreateAdventurer(payload) {
   return {
     type: FETCH_CREATE_ADVENTURER,
+    payload
+  };
+}
+
+export function updatePosition(payload) {
+  return {
+    type: UPDATE_POSITION,
     payload
   };
 }

@@ -9,7 +9,7 @@ const Game = () => {
   return (
     <Grid container justify="center">
       <GameSummaryInfoContainer />
-      <Grid xs={12} align="end" className="game__map">
+      <Grid item xs={12} align="end" className="game__map">
         <GameMapContainer />
       </Grid>
       <GameContainer />

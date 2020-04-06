@@ -1,2 +1,2 @@
 export const CONNECTED = 'connected';
-export const MAP_METADATA = 'map_metadata';
+export const GAME_METADATA = 'game_metadata';
