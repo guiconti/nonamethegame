@@ -1,8 +1,10 @@
 import {
   LOADING,
+  CONNECTED,
+  DISCONNECTED,
   FETCH_CONNECT,
   FETCH_GAME_MAP,
-  MAP_INFO,
+  MAP_INFO
 } from '../types/game';
 
 export function loading() {
@@ -14,6 +16,18 @@ export function loading() {
 export function fetchConnect() {
   return {
     type: FETCH_CONNECT
+  };
+}
+
+export function connected() {
+  return {
+    type: CONNECTED,
+  };
+}
+
+export function disconnected() {
+  return {
+    type: DISCONNECTED,
   };
 }
 

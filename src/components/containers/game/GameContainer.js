@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchConnect } from '../../../actions/gameActions';
+import { fetchConnect, connected, disconnected } from '../../../actions/gameActions';
 import webSocket from '../../../webSocket';
 import { CONNECTED } from '../../../constants/sockets';
 
@@ -10,10 +10,11 @@ const GameContainer = () => {
   useEffect(() => {
     dispatch(fetchConnect());
     webSocket.on(CONNECTED, () => {
-      //  TODO: Update redux to set a connected state
+      dispatch(connected());
     });
     return () => {
       webSocket.close();
+      dispatch(disconnected());
     }
   }, []);
 

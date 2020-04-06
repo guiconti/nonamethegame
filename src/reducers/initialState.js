@@ -9,6 +9,8 @@ export default {
     info: {},
   },
   game: {
+    loading: false,
+    connected: false,
     map: [],
   },
 };
