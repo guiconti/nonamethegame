@@ -1,0 +1,61 @@
+@import '../../../styles/functions.scss';
+
+.button {
+  padding: 0.75rem 0.5rem;
+  background-color: color(primary-input);
+  border: 1px solid color(primary-input);
+  color: color(primary-text);
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 1rem;
+  transition: background-color 0.15s linear;
+}
+
+.button--loading {
+  padding: 0.25rem 0.5rem;
+}
+
+.button--large {
+  font-size: 1.5rem;
+}
+
+.button--small {
+  font-size: 0.5rem;
+}
+
+.button:hover,
+.button:active {
+  background-color: color(primary-input-dark);
+}
+
+.button:disabled {
+  background-color: color(disabled-input);
+  border-color: color(disabled-input);
+}
+
+.button--transparent {
+  border-color: color(primary-input);
+  background-color: white;
+  color: color(primary-input);
+}
+
+.button--transparent:hover,
+.button--transparent:active {
+  border-color: color(primary-input-dark);
+  background-color: color(primary-input-dark);
+  color: color(primary-text)
+}
+
+.button--transparent:disabled {
+  background-color: white;
+  border-color: color(primary-input);
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button--full-width {
+  width: 100%;
+}

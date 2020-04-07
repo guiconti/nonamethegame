@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from '../shared/Button';
 import {
   Avatar,
-  CircularProgress,
-  Button,
   TextField,
   Link,
   Grid,
@@ -73,13 +72,13 @@ const LoginForm = ({
         <Button
           type="submit"
           fullWidth
-          variant="contained"
-          color="primary"
           className="login__submit"
+          transparent
+          loading={loading}
           disabled={loading}
           onClick={signIn}
         >
-          {loading ? <CircularProgress /> : 'Sign in'}
+          Sign in
         </Button>
         <Grid container>
           <Grid item xs>

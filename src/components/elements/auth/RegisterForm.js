@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from '../shared/Button';
 import {
   Avatar,
-  Button,
-  CircularProgress,
   TextField,
   Link,
   Grid,
@@ -91,13 +90,13 @@ const RegisterForm = ({
         <Button
           type="submit"
           fullWidth
-          variant="contained"
-          color="primary"
           className="register__submit"
+          transparent
+          loading={loading}
           disabled={loading}
           onClick={register}
         >
-          {loading ? <CircularProgress /> : 'Register'}
+          Register
         </Button>
         <Grid container>
           <Grid item xs>

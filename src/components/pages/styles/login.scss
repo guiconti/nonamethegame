@@ -1,11 +1,12 @@
+@import '../../styles/functions.scss';
+
 .login-page {
   height: 100vh;
 }
 
 .login-page__image {
-  background-image: url(https://source.unsplash.com/random);
   background-repeat: no-repeat;
-  background-color: #fafafa;
+  background-color: color(primary);
   background-size: cover;
   background-position: center;
 }
