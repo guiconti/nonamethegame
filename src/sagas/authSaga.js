@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import register from '../apis/register';
 import signIn from '../apis/signIn';
 import { REGISTER_FETCH, SIGN_IN_FETCH } from '../types/auth';
-import { signedIn, loading } from '../actions/authActions';
+import { signedIn, loading, loaded, error } from '../actions/authActions';
 import { changeRoute } from '../actions/navigationActions';
 import { ADVENTURERS } from '../constants/routes';
 
@@ -14,8 +14,10 @@ export function* fetchRegister(payload) {
     Cookies.set('session', response.data.session);
     yield put(signedIn());
     yield put(changeRoute(ADVENTURERS));
+    yield put(loaded());
   } catch(err) {
-    //  Handle error with an action
+    yield put(error(err));
+    yield put(loaded());
   }
 }
 
@@ -26,8 +28,10 @@ export function* fetchSignIn(payload) {
     Cookies.set('session', response.data.session);
     yield put(signedIn());
     yield put(changeRoute(ADVENTURERS));
+    yield put(loaded());
   } catch(err) {
-    //  Handle error with an action
+    yield put(error(err));
+    yield put(loaded());
   }
 }
 

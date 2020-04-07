@@ -9,6 +9,7 @@ import {
   Grid,
   Typography
 } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import './styles/loginForm.scss';
 
@@ -19,7 +20,9 @@ const LoginForm = ({
   setPassword,
   toggleIsRegistering,
   loading,
-  signIn
+  signIn,
+  openError,
+  onCloseError,
 }) => {
   return (
     <div className="login">
@@ -29,6 +32,11 @@ const LoginForm = ({
       <Typography component="h1" variant="h5">
         Sign in
       </Typography>
+      {openError && (
+        <Alert className="login__error" onClose={onCloseError} severity="error">
+          Invalid Email/Password
+        </Alert>
+      )}
       <form className="login__form" noValidate>
         <TextField
           variant="outlined"
@@ -41,7 +49,10 @@ const LoginForm = ({
           autoComplete="email"
           autoFocus
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            onCloseError();
+          }}
         />
         <TextField
           variant="outlined"
@@ -54,7 +65,10 @@ const LoginForm = ({
           id="password"
           autoComplete="current-password"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            onCloseError();
+          }}
         />
         <Button
           type="submit"
@@ -91,7 +105,9 @@ LoginForm.propTypes = {
   setPassword: PropTypes.func.isRequired,
   toggleIsRegistering: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  signIn: PropTypes.func.isRequired
+  signIn: PropTypes.func.isRequired,
+  openError: PropTypes.bool.isRequired,
+  onCloseError: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

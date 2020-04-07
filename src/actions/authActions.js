@@ -1,4 +1,13 @@
-import { SIGNED_IN, SIGNED_OUT, REGISTER_FETCH, SIGN_IN_FETCH, LOADING } from '../types/auth';
+import {
+  SIGNED_IN,
+  SIGNED_OUT,
+  REGISTER_FETCH,
+  SIGN_IN_FETCH,
+  LOADING,
+  LOADED,
+  ERROR,
+  CLEAR_ERROR
+} from '../types/auth';
 
 export function signedIn() {
   return {
@@ -29,5 +38,24 @@ export function fetchSignIn(payload) {
 export function loading() {
   return {
     type: LOADING,
+  };
+}
+
+export function loaded() {
+  return {
+    type: LOADED,
+  };
+}
+
+export function error(payload) {
+  return {
+    type: ERROR,
+    payload,
+  };
+}
+
+export function clearError() {
+  return {
+    type: CLEAR_ERROR,
   };
 }

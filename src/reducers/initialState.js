@@ -2,6 +2,8 @@ export default {
   auth: {
     signedIn: false,
     loading: false,
+    showError: false,
+    error: null,
   },
   adventurer: {
     loading: false,

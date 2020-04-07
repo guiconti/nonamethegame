@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from '../../elements/auth/LoginForm';
 import RegisterForm from '../../elements/auth/RegisterForm';
-import { fetchRegister, fetchSignIn } from '../../../actions/authActions';
-import { getAuthLoading } from '../../../reducers/selectors';
+import { fetchRegister, fetchSignIn, clearError } from '../../../actions/authActions';
+import { getAuthLoading, getAuthShowError } from '../../../reducers/selectors';
 
 const AuthContainer = () => {
   const dispatch = useDispatch();
@@ -12,16 +12,33 @@ const AuthContainer = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isRegistering, toggleIsRegistering] = useState(false);
   const loading = useSelector(getAuthLoading);
+  const showError = useSelector(getAuthShowError);
+
+  useEffect(() => {
+    dispatch(clearError());
+  }, []);
 
   const register = (e) => {
     e.preventDefault();
     dispatch(fetchRegister({ email, password }));
-  }
-  
+    if (showError) {
+      dispatch(clearError());
+    }
+  };
+
   const signIn = (e) => {
     e.preventDefault();
     dispatch(fetchSignIn({ email, password }));
-  }
+    if (showError) {
+      dispatch(clearError());
+    }
+  };
+
+  const onCloseError = () => {
+    if (showError) {
+      dispatch(clearError());
+    }
+  };
 
   return (
     <>
@@ -36,6 +53,8 @@ const AuthContainer = () => {
           toggleIsRegistering={toggleIsRegistering}
           loading={loading}
           register={register}
+          openError={showError}
+          onCloseError={onCloseError}
         />
       ) : (
         <LoginForm
@@ -46,6 +65,8 @@ const AuthContainer = () => {
           toggleIsRegistering={toggleIsRegistering}
           loading={loading}
           signIn={signIn}
+          openError={showError}
+          onCloseError={onCloseError}
         />
       )}
     </>

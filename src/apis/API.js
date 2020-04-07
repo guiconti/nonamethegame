@@ -5,4 +5,11 @@ const defaultOptions = {
   credentials: 'include',
 };
 
-export default (url, options) => fetch(url, { ...defaultOptions, ...options });
+export default async (url, options) => {
+  const response = await fetch(url, { ...defaultOptions, ...options });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.data);
+  }
+  return data;
+};

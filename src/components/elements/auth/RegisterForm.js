@@ -9,6 +9,7 @@ import {
   Grid,
   Typography
 } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import './styles/registerForm.scss';
 
@@ -21,7 +22,9 @@ const RegisterForm = ({
   setConfirmPassword,
   toggleIsRegistering,
   loading,
-  register
+  register,
+  openError,
+  onCloseError,
 }) => {
   return (
     <div className="register">
@@ -31,6 +34,11 @@ const RegisterForm = ({
       <Typography component="h1" variant="h5">
         Register
       </Typography>
+      {openError && (
+        <Alert className="register__error" onClose={onCloseError} severity="error">
+          Email already in use
+        </Alert>
+      )}
       <form className="register__form" noValidate>
         <TextField
           variant="outlined"
@@ -43,7 +51,10 @@ const RegisterForm = ({
           autoComplete="email"
           autoFocus
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            onCloseError();
+          }}
         />
         <TextField
           variant="outlined"
@@ -56,7 +67,10 @@ const RegisterForm = ({
           id="registerPassword"
           autoComplete="current-password"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            onCloseError();
+          }}
         />
         <TextField
           variant="outlined"
@@ -69,7 +83,10 @@ const RegisterForm = ({
           id="confirmPassword"
           autoComplete="confirm-password"
           value={confirmPassword}
-          onChange={e => setConfirmPassword(e.target.value)}
+          onChange={(e) => {
+            setConfirmPassword(e.target.value);
+            onCloseError();
+          }}
         />
         <Button
           type="submit"
@@ -108,7 +125,9 @@ RegisterForm.propTypes = {
   setConfirmPassword: PropTypes.func.isRequired,
   toggleIsRegistering: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  register: PropTypes.func.isRequired
+  register: PropTypes.func.isRequired,
+  openError: PropTypes.bool.isRequired,
+  onCloseError: PropTypes.func.isRequired,
 };
 
 export default RegisterForm;
