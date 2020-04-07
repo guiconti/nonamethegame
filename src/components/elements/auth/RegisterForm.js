@@ -91,7 +91,7 @@ const RegisterForm = ({
           type="submit"
           fullWidth
           className="register__submit"
-          transparent
+          outlined
           loading={loading}
           disabled={loading}
           onClick={register}

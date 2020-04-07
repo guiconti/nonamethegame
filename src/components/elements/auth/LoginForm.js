@@ -73,7 +73,7 @@ const LoginForm = ({
           type="submit"
           fullWidth
           className="login__submit"
-          transparent
+          outlined
           loading={loading}
           disabled={loading}
           onClick={signIn}

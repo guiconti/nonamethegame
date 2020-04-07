@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import './styles/loadingIcon.scss';
 
-const LoadingIcon = ({ className, transparent, large, small, ...rest }) => {
+const LoadingIcon = ({ className, outlined, text, large, small, ...rest }) => {
   return (
     <svg
       className={clsx(
         'loading-icon',
         className,
-        { 'loading-icon__--large': large },
-        { 'loading-icon__--small': small }
+        { 'loading-icon--large': large },
+        { 'loading-icon--small': small }
       )}
       viewBox="0 0 100 100"
       preserveAspectRatio="xMidYMid"
@@ -18,7 +18,7 @@ const LoadingIcon = ({ className, transparent, large, small, ...rest }) => {
       <circle
         className={clsx(
           'loading-icon__circle',
-          { 'loading-icon__circle--transparent': transparent }
+          { 'loading-icon__circle--outlined': outlined || text }
         )}
         cx={50}
         cy={50}
@@ -41,7 +41,8 @@ const LoadingIcon = ({ className, transparent, large, small, ...rest }) => {
 
 LoadingIcon.propTypes = {
   className: PropTypes.string,
-  transparent: PropTypes.bool,
+  outlined: PropTypes.bool,
+  text: PropTypes.bool,
   large: PropTypes.bool,
   small: PropTypes.bool
 };

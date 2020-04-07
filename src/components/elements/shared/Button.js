@@ -4,21 +4,32 @@ import clsx from 'clsx';
 import LoadingIcon from './LoadingIcon';
 import './styles/button.scss';
 
-const Button = ({ children, fullWidth, transparent, className, loading, large, small, ...rest }) => {
+const Button = ({
+  children,
+  fullWidth,
+  outlined,
+  text,
+  className,
+  loading,
+  large,
+  small,
+  ...rest
+}) => {
   return (
     <button
       className={clsx(
         'button',
         className,
         { 'button--full-width': fullWidth },
-        { 'button--transparent': transparent },
+        { 'button--outlined': outlined },
+        { 'button--text': text },
         { 'button--loading': loading },
         { 'button--large': large },
         { 'button--small': small }
       )}
       {...rest}
     >
-      {loading ? <LoadingIcon transparent large small /> : <> {children} </>}
+      {loading ? <LoadingIcon outlined text large small /> : <> {children} </>}
     </button>
   );
 };
@@ -26,7 +37,8 @@ const Button = ({ children, fullWidth, transparent, className, loading, large, s
 Button.propTypes = {
   children: PropTypes.string.isRequired,
   className: PropTypes.string,
-  transparent: PropTypes.bool,
+  outlined: PropTypes.bool,
+  text: PropTypes.bool,
   fullWidth: PropTypes.bool,
   loading: PropTypes.bool,
   large: PropTypes.bool,
