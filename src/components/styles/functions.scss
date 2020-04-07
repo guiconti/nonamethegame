@@ -1,0 +1,10 @@
+@import './theme.scss';
+
+@function color($key) {
+  @if map-has-key($theme, $key) {
+    @return map-get($theme, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $colors.";
+  @return null;
+}
