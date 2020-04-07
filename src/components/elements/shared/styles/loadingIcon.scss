@@ -1,0 +1,32 @@
+@import '../../../styles/functions.scss';
+
+.loading-icon {
+  margin: auto;
+  background: rgba(0, 0, 0, 0);
+  display: block;
+  shape-rendering: auto;
+  width: 2rem;
+  height: 2rem;
+}
+
+.loading-icon--large {
+  width: 3rem;
+  height: 3rem;
+}
+
+.loading-icon--small {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.loading-icon__circle {
+  fill: none;
+  stroke: color(primary-text);
+  stroke-width: 10px;
+}
+
+.loading-icon__circle--transparent {
+  fill: none;
+  stroke: color(primary-input-dark);
+  stroke-width: 10px;
+}
