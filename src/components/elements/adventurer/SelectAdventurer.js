@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Card from '../shared/Card';
 import Button from '../shared/Button';
-import { Grid, Card, CardContent, CardActions, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import './styles/selectAdventurer.scss';
 
 const SelectAdventurer = ({ _id, name, level, _class, race, selectAdventurer }) => {
   return (
     <Grid item align="center" xs={12} sm={6} md={3}>
       <Card className="select-adventurer__card">
-        <CardContent className="select-adventurer__card-content">
+        <div className="select-adventurer__card-content">
           <Grid container>
             <Grid item xs={12} align="center">
               <Typography className="select_adventurer__name" variant="subtitle1">
@@ -22,12 +23,12 @@ const SelectAdventurer = ({ _id, name, level, _class, race, selectAdventurer }) 
               {_class} {race}
             </Grid>
           </Grid>
-        </CardContent>
-        <CardActions className="select-adventurer__card-actions">
+        </div>
+        <div className="select-adventurer__card-actions">
           <Button fullWidth onClick={() => selectAdventurer(_id)}>
             Select
           </Button>
-        </CardActions>
+        </div>
       </Card>
     </Grid>
   );
