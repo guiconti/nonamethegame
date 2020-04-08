@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Avatar from '../shared/Avatar';
 import Title from '../shared/Title';
 import Button from '../shared/Button';
 import Link from '../shared/Link';
 import {
-  Avatar,
   TextField,
   Grid
 } from '@material-ui/core';
@@ -25,8 +25,8 @@ const LoginForm = ({
 }) => {
   return (
     <div className="login">
-      <Avatar className="login__avatar">
-        <LockOutlinedIcon />
+      <Avatar outlined className="login__avatar">
+        <LockOutlinedIcon fontSize="inherit" />
       </Avatar>
       <Title>
         Sign in

@@ -1,0 +1,35 @@
+@import '../../../styles/functions.scss';
+
+.avatar {
+  width: 3rem;
+  height: 3rem;
+  background-color: color(primary);
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  font-size: 1.5rem;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  color: color(primary-input);
+  position: relative;
+}
+
+.avatar--outlined {
+  background-color: white;
+  border: 2px solid color(primary-dark);
+  color: color(primary-dark);
+}
+
+.avatar--large {
+  width: 4rem;
+  height: 4rem;
+  font-size: 2.15rem;
+}
+
+.avatar--small {
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.15rem;
+}
