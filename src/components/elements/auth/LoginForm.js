@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Title from '../shared/Title';
 import Button from '../shared/Button';
 import Link from '../shared/Link';
 import {
   Avatar,
   TextField,
-  Grid,
-  Typography
+  Grid
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -28,9 +28,9 @@ const LoginForm = ({
       <Avatar className="login__avatar">
         <LockOutlinedIcon />
       </Avatar>
-      <Typography component="h1" variant="h5">
+      <Title>
         Sign in
-      </Typography>
+      </Title>
       {openError && (
         <Alert className="login__error" onClose={onCloseError} severity="error">
           Invalid Email/Password

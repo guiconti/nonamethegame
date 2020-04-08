@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import './styles/header.scss';
+import './styles/title.scss';
 
-const Header = ({ children, className, ...rest }) => {
+const Title = ({ children, className, ...rest }) => {
   return (
-    <h1 className={clsx('header', className)} {...rest}>
+    <h4 className={clsx('title', className)} {...rest}>
       {children}
-    </h1>
+    </h4>
   );
 };
 
-Header.propTypes = {
+Title.propTypes = {
   children: PropTypes.string.isRequired,
   className: PropTypes.string,
 };
 
-export default Header;
+export default Title;

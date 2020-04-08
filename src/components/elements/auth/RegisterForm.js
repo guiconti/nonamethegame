@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Title from '../shared/Title';
 import Button from '../shared/Button';
 import Link from '../shared/Link';
 import {
   Avatar,
   TextField,
-  Grid,
-  Typography
+  Grid
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -30,9 +30,9 @@ const RegisterForm = ({
       <Avatar className="register__avatar">
         <LockOutlinedIcon />
       </Avatar>
-      <Typography component="h1" variant="h5">
+      <Title>
         Register
-      </Typography>
+      </Title>
       {openError && (
         <Alert className="register__error" onClose={onCloseError} severity="error">
           Email already in use
