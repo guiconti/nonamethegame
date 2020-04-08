@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  CircularProgress
-} from '@material-ui/core';
+import clsx from 'clsx';
+import Button from './Button';
+import DialogTitle from './DialogTitle';
+import DialogBody from './DialogBody';
+import DialogActions from './DialogActions';
+import './styles/confirmationDialog.scss';
 
 const ConfirmationDialog = ({
   children,
@@ -19,21 +17,30 @@ const ConfirmationDialog = ({
   cancelText,
   handleConfirm,
   handleCancel,
-  loading
+  loading,
 }) => {
   return (
-    <Dialog onClose={handleClose} open={show} fullScreen={fullScreen}>
-      <DialogTitle>{title}</DialogTitle>
-      <DialogContent>{children}</DialogContent>
-      <DialogActions>
-        <Button color="primary" disabled={loading} onClick={handleCancel}>
-          {cancelText}
-        </Button>
-        <Button color="primary" disabled={loading} onClick={handleConfirm}>
-          {loading ? <CircularProgress /> : confirmText}
-        </Button>
-      </DialogActions>
-    </Dialog>
+    <div
+      className={clsx('dialog', { 'dialog-open': show })}
+      onClick={(e) => {
+        if (e.target == e.currentTarget) {
+          handleClose();
+        }
+      }}
+    >
+      <div className={clsx('dialog__content', { 'dialog__content--full-screen': fullScreen })}>
+        <DialogTitle>{title}</DialogTitle>
+        <DialogBody>{children}</DialogBody>
+        <DialogActions>
+          <Button text disabled={loading} loading={loading} onClick={handleCancel}>
+            {cancelText}
+          </Button>
+          <Button text disabled={loading} loading={loading} onClick={handleConfirm}>
+            {confirmText}
+          </Button>
+        </DialogActions>
+      </div>
+    </div>
   );
 };
 
@@ -47,7 +54,7 @@ ConfirmationDialog.propTypes = {
   cancelText: PropTypes.string.isRequired,
   handleConfirm: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
 };
 
 export default ConfirmationDialog;
