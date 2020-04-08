@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../shared/Button';
+import Link from '../shared/Link';
 import {
   Avatar,
   TextField,
-  Link,
   Grid,
   Typography
 } from '@material-ui/core';
@@ -82,12 +82,12 @@ const LoginForm = ({
         </Button>
         <Grid container>
           <Grid item xs>
-            <Link variant="body2" disabled={loading}>
+            <Link disabled={loading}>
               Forgot password?
             </Link>
           </Grid>
           <Grid item>
-            <Link variant="body2" disabled={loading} onClick={() => toggleIsRegistering(true)}>
+            <Link disabled={loading} onClick={() => toggleIsRegistering(true)}>
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>

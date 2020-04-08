@@ -1,0 +1,25 @@
+@import '../../../styles/functions.scss';
+
+.link {
+  color: color(primary-input);
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-decoration: None;
+}
+
+.link:hover,
+.link:active {
+  text-decoration-line: underline;
+}
+
+.link:disabled {
+  color: color(disabled-input);
+}
+
+.link--large {
+  font-size: 1.25em;
+}
+
+.link--small {
+  font-size: 0.35em;
+}
