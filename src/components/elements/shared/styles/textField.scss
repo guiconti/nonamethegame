@@ -1,0 +1,80 @@
+@import '../../../styles/functions.scss';
+
+.text-field {
+  box-sizing: border-box;
+  position: relative;
+  font-size: 1rem;
+  font-weight: 400;
+  height: 3.5rem;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+.text-field__input {
+  font-size: inherit;
+  padding: 22px 2px 8px 0px;
+  border: none;
+  border-bottom: 1px solid #BEBEBE;
+  box-sizing: border-box;
+}
+
+.text-field__floating-label {
+  position: absolute;
+  pointer-events: none;
+  left: 0px;
+  top: 20px;
+  color: rgb(112, 112, 112);
+  font-size: inherit;
+  transition: 0.2s linear;
+}
+
+.text-field__floating-label--outlined {
+  left: 14px;
+}
+
+.text-field__input:focus {
+  outline: none;
+  border-bottom: 1px solid color(primary-input);
+}
+
+.text-field__input:focus ~ .text-field__floating-label,
+.text-field__input:not(:focus):valid ~ .text-field__floating-label{
+  color: color(primary-input);
+  left: 0px;
+  top: 0px;
+  font-size: 0.75rem;
+}
+
+.text-field__input:focus ~ .text-field__floating-label--outlined,
+.text-field__input:not(:focus):valid ~ .text-field__floating-label--outlined{
+  left: 14px;
+  top: -8px;
+  padding-left: 4px;
+  padding-right: 6px;
+  background-color: white;
+}
+
+.text-field__input:not(:focus):hover,
+.text-field__input:not(:focus):active {
+  border-bottom: 1px solid black;
+}
+
+.text-field__input--outlined {
+  padding: 20px 12px;
+  border: 1px solid #BEBEBE;
+  border-radius: 4px;
+}
+
+.text-field__input--outlined:focus {
+  border: 2px solid color(primary-input-light);
+  padding: 19px 11px;
+}
+
+.text-field__input--outlined:not(:focus):hover,
+.text-field__input--outlined:not(:focus):active {
+  border: 1px solid black;
+}
+
+.text-field__input--full-width {
+  width: 100%;
+}

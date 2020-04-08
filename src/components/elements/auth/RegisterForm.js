@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Avatar from '../shared/Avatar';
 import Title from '../shared/Title';
 import Alert from '../shared/Alert';
+import TextField from '../shared/TextField';
 import Button from '../shared/Button';
 import Link from '../shared/Link';
 import {
-  TextField,
   Grid
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -40,10 +40,10 @@ const RegisterForm = ({
       )}
       <form className="register__form" noValidate>
         <TextField
-          variant="outlined"
-          margin="normal"
           required
           fullWidth
+          outlined
+          className="login__text-field"
           id="registerEmail"
           label="Email Address"
           name="email"
@@ -56,10 +56,10 @@ const RegisterForm = ({
           }}
         />
         <TextField
-          variant="outlined"
-          margin="normal"
           required
           fullWidth
+          outlined
+          className="login__text-field"
           name="password"
           label="Password"
           type="password"
@@ -72,10 +72,10 @@ const RegisterForm = ({
           }}
         />
         <TextField
-          variant="outlined"
-          margin="normal"
           required
           fullWidth
+          outlined
+          className="register__text-field"
           name="confirmPassword"
           label="Confirm password"
           type="password"

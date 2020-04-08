@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Avatar from '../shared/Avatar';
 import Title from '../shared/Title';
 import Alert from '../shared/Alert';
+import TextField from '../shared/TextField';
 import Button from '../shared/Button';
 import Link from '../shared/Link';
 import {
-  TextField,
   Grid
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -37,16 +37,15 @@ const LoginForm = ({
         </Alert>
       )}
       <form className="login__form" noValidate>
-        <TextField
-          variant="outlined"
-          margin="normal"
-          required
+        <TextField 
           fullWidth
-          id="email"
+          required
+          autoFocus
+          outlined
+          className="login__text-field"
           label="Email Address"
           name="email"
           autoComplete="email"
-          autoFocus
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
@@ -54,10 +53,10 @@ const LoginForm = ({
           }}
         />
         <TextField
-          variant="outlined"
-          margin="normal"
-          required
           fullWidth
+          required
+          outlined
+          className="login__text-field"
           name="password"
           label="Password"
           type="password"
