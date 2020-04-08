@@ -1,14 +1,14 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
 import Header from '../elements/shared/Header';
 import SelectAdventurerContainer from '../containers/adventurer/SelectAdventurerContainer';
+import './styles/adventurers.scss';
 
 const Adventurers = () => {
   return (
-    <Container>
-      <Header>Adventurers</Header>
+    <div className="adventurers">
+      <Header className="adventurers__header">Adventurers</Header>
       <SelectAdventurerContainer />
-    </Container>
+    </div>
   );
 };
 

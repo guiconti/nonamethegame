@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import LoadingIcon from '../../elements/shared/LoadingIcon';
 import ListAdventurers from '../../elements/adventurer/ListAdventurers';
 import ConfirmNewAdventurer from '../../elements/adventurer/ConfirmNewAdventurer';
 import { fetchListAdventurers, fetchSelectAdventurer, newAdventurer } from '../../../actions/adventurerActions';
@@ -35,7 +36,7 @@ const SelectAdventurerContainer = () => {
   return (
     <>
       {loading ? (
-        <p>Loading</p>
+        <LoadingIcon large />
       ) : (
         <>
           <ListAdventurers

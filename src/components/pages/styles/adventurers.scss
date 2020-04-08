@@ -1,0 +1,13 @@
+@import '../../styles/functions.scss';
+
+.adventurers {
+  height: 100vh;
+  width: 100vw;
+  background-color: color(primary-input-dark);
+}
+
+.adventurers__header {
+  margin-top: 0;
+  padding-top: 0.67rem;
+  color: white;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Card, CardContent, CardActions, Typography, Button } from '@material-ui/core';
+import Button from '../shared/Button';
+import { Grid, Card, CardContent, CardActions, Typography } from '@material-ui/core';
 import './styles/selectAdventurer.scss';
 
 const SelectAdventurer = ({ _id, name, level, _class, race, selectAdventurer }) => {
@@ -23,7 +24,7 @@ const SelectAdventurer = ({ _id, name, level, _class, race, selectAdventurer }) 
           </Grid>
         </CardContent>
         <CardActions className="select-adventurer__card-actions">
-          <Button fullWidth size="small" color="primary" onClick={() => selectAdventurer(_id)}>
+          <Button fullWidth onClick={() => selectAdventurer(_id)}>
             Select
           </Button>
         </CardActions>
