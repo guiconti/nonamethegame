@@ -1,10 +1,16 @@
 $theme: (
   primary: #5CDB95,
   primary-dark: #379683,
-  primary-light: #8EE4AF,
+  primary-light: rgb(167, 233, 192),
+  primary-input-light: #6f89ac,
   primary-input: #24528f,
   primary-input-dark: #05368B,
   primary-text: #EDF5E1,
   disabled-input: #E7E7E7,
-  error: #FF1744
+  error-light: #FFE7EC,
+  error: #FF1744,
+  error-dark: #66091B,
+  warning-light: #F5EEB1,
+  warning: #E8DD7B,
+  warning-dark: #816f0b
 );

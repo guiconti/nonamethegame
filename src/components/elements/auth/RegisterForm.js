@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '../shared/Avatar';
 import Title from '../shared/Title';
+import Alert from '../shared/Alert';
 import Button from '../shared/Button';
 import Link from '../shared/Link';
 import {
   TextField,
   Grid
 } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import './styles/registerForm.scss';
 
@@ -34,7 +34,7 @@ const RegisterForm = ({
         Register
       </Title>
       {openError && (
-        <Alert className="register__error" onClose={onCloseError} severity="error">
+        <Alert className="register__error" onClose={onCloseError} type="error">
           Email already in use
         </Alert>
       )}

@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '../shared/Avatar';
 import Title from '../shared/Title';
+import Alert from '../shared/Alert';
 import Button from '../shared/Button';
 import Link from '../shared/Link';
 import {
   TextField,
   Grid
 } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import './styles/loginForm.scss';
 
@@ -32,7 +32,7 @@ const LoginForm = ({
         Sign in
       </Title>
       {openError && (
-        <Alert className="login__error" onClose={onCloseError} severity="error">
+        <Alert className="login__error" onClose={onCloseError} type="error">
           Invalid Email/Password
         </Alert>
       )}

@@ -1,0 +1,62 @@
+@import '../../../styles/functions.scss';
+
+.alert {
+  border: 1px solid color(primary-input-light);
+  background-color: color(primary-input-light);
+  color: color(primary-input-dark);
+  padding: 0.75rem 0.85rem;
+  padding-right: 0.5rem;
+  border: 1px solid color(primary-input-light);
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+}
+
+.alert__message {
+  margin: 0;
+}
+
+.alert__type-icon {
+  margin-right: 8px;
+  color: color(primary-input);
+}
+
+.alert__close-button {
+  margin-left: 8px;
+}
+
+.alert--outlined {
+  background-color: white;
+}
+
+.alert--success {
+  background-color: color(primary-light);
+  color: color(primary-dark);
+  border: 1px solid color(primary-light);
+}
+
+.alert--error {
+  background-color: color(error-light);
+  color: color(error-dark);
+  border: 1px solid color(error-light);
+}
+
+.alert--warning {
+  background-color: color(warning-light);
+  color: color(warning-dark);
+  border: 1px solid color(warning-light);
+}
+
+.alert__type-icon--success {
+  color: color(primary-dark);
+}
+
+.alert__type-icon--error {
+  color: color(error);
+}
+
+.alert__type-icon--warning {
+  color: color(warning-dark);
+}
