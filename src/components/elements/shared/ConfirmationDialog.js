@@ -21,24 +21,26 @@ const ConfirmationDialog = ({
 }) => {
   return (
     <div
-      className={clsx('dialog', { 'dialog-open': show })}
+      className={clsx('dialog', { 'dialog--open': show })}
       onClick={(e) => {
         if (e.target == e.currentTarget) {
           handleClose();
         }
       }}
     >
-      <div className={clsx('dialog__content', { 'dialog__content--full-screen': fullScreen })}>
-        <DialogTitle>{title}</DialogTitle>
-        <DialogBody>{children}</DialogBody>
-        <DialogActions>
-          <Button text disabled={loading} loading={loading} onClick={handleCancel}>
-            {cancelText}
-          </Button>
-          <Button text disabled={loading} loading={loading} onClick={handleConfirm}>
-            {confirmText}
-          </Button>
-        </DialogActions>
+      <div className={clsx('dialog__content', { 'dialog__content--open': show }, { 'dialog__content--full-screen': fullScreen })}>
+        <div className="dialog__card">
+          <DialogTitle>{title}</DialogTitle>
+          <DialogBody>{children}</DialogBody>
+          <DialogActions>
+            <Button text disabled={loading} loading={loading} onClick={handleCancel}>
+              {cancelText}
+            </Button>
+            <Button text disabled={loading} loading={loading} onClick={handleConfirm}>
+              {confirmText}
+            </Button>
+          </DialogActions>
+        </div>
       </div>
     </div>
   );

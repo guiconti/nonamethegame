@@ -6,21 +6,34 @@
   min-width: 100vw;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.3);
-  display: none;
+  display: flex;
   text-align: center;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
 }
 
-.dialog-open {
-  overflow: hidden;
-  display: flex;
+.dialog--open {
+  visibility: visible;
 }
 
 .dialog__content {
-  background-color: white;
-  display: inline-block;
-  border-radius: 4px;
-  margin: auto;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 200ms, transform 200ms;
 }
+
+.dialog__content--open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dialog__card {
+  background-color: white;
+  border-radius: 4px;
+}
+
 
 .dialog__content--full-screen {
   height: 100vh;
