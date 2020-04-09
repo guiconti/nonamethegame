@@ -9,6 +9,7 @@ const Button = ({
   fullWidth,
   outlined,
   text,
+  tile,
   className,
   loading,
   large,
@@ -23,6 +24,7 @@ const Button = ({
         { 'button--full-width': fullWidth },
         { 'button--outlined': outlined },
         { 'button--text': text },
+        { 'button--tile': tile },
         { 'button--loading': loading },
         { 'button--large': large },
         { 'button--small': small }
@@ -38,6 +40,7 @@ Button.propTypes = {
   children: PropTypes.string.isRequired,
   className: PropTypes.string,
   outlined: PropTypes.bool,
+  tile: PropTypes.bool,
   text: PropTypes.bool,
   fullWidth: PropTypes.bool,
   loading: PropTypes.bool,
