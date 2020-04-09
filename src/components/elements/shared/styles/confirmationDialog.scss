@@ -12,20 +12,21 @@
   justify-content: center;
   align-items: center;
   visibility: hidden;
+  opacity: 0;
+  transition: opacity 200ms;
 }
 
 .dialog--open {
   visibility: visible;
+  opacity: 1;
 }
 
 .dialog__content {
-  opacity: 0;
   transform: scale(0.7);
-  transition: opacity 200ms, transform 200ms;
+  transition: all 200ms cubic-bezier(0.32, 0, 0.67, 0);
 }
 
 .dialog__content--open {
-  opacity: 1;
   transform: scale(1);
 }
 
