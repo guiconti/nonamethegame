@@ -27,6 +27,7 @@
 .button:hover,
 .button:active {
   background-color: color(primary-input-dark);
+  border-color: color(primary-input-dark);
 }
 
 .button:disabled {
