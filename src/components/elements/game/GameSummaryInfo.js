@@ -21,9 +21,9 @@ const GameSummaryInfo = ({
 }) => {
   const ClassIconComponent = CLASS_ICONS[_class] ? CLASS_ICONS[_class] : undefined;
   return (
-    <Row justifyContent="start" alignItems="center">
+    <Row justifyContent="center" alignItems="stretch">
       <Item xs={3} md={2}>
-        <Column alignItems="center">
+        <Column>
           <Item>
             <Avatar className="game-summary-info__class-avatar" outlined extraLarge>
               <ClassIconComponent />
@@ -33,7 +33,7 @@ const GameSummaryInfo = ({
         </Column>
       </Item>
       <Item xs={7} md={8}>
-        <Column>
+        <Column justifyContent="space-between">
           <Item>
             Lv {level} {name}
           </Item>
