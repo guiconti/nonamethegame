@@ -1,3 +1,5 @@
+@import '../../../styles/functions.scss';
+
 .item {
   flex: 0 0 auto;
 }
@@ -15,4 +17,113 @@
 .item-6 {
   flex: 0 0 50%;
   max-width: 50%;
+}
+
+.item-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+@media (min-width: breakpoint(xs)) {
+  .item-sm-12 {
+    flex: 0 0 auto;
+  }
+  
+  .item-sm-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  
+  .item-sm-4 {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+  
+  .item-sm-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .item-sm-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: breakpoint(sm)) {
+  .item-md-12 {
+    flex: 0 0 auto;
+  }
+  
+  .item-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  
+  .item-md-4 {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+  
+  .item-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .item-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: breakpoint(md)) {
+  .item-lg-12 {
+    flex: 0 0 auto;
+  }
+  
+  .item-lg-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  
+  .item-lg-4 {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+  
+  .item-lg-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .item-lg-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: breakpoint(lg)) {
+  .item-xl-12 {
+    flex: 0 0 auto;
+  }
+  
+  .item-xl-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  
+  .item-xl-4 {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+  
+  .item-xl-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .item-xl-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
