@@ -8,7 +8,7 @@ import CreateAdventurerTraits from '../../elements/adventurer/CreateAdventurerTr
 import CreateAdventurerActions from '../../elements/adventurer/CreateAdventurerActions';
 import ConfirmAdventurerCreation from '../../elements/adventurer/ConfirmAdventurerCreation';
 import { exitAdventurerCreation, fetchCreateAdventurer } from '../../../actions/adventurerActions';
-import { getAdventurerLoading } from '../../../reducers/selectors';
+import { getAdventurerCreationLoading } from '../../../reducers/selectors';
 import {
   CREATION_STEPS,
   NEW_ADVENTURER_ATTRIBUTES,
@@ -20,7 +20,7 @@ import {
 
 const CreateAdventurerContainer = () => {
   const dispatch = useDispatch();
-  const loading = useSelector(getAdventurerLoading);
+  const loading = useSelector(getAdventurerCreationLoading);
   const [activeStep, setActiveStep] = useState(0);
   const [name, setName] = useState('');
   const [selectedClass, setSelectedClass] = useState('');

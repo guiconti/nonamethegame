@@ -1,6 +1,9 @@
 import initialState from './initialState';
 import objectAssign from 'object-assign';
 import {
+  ADVENTURERS_LIST_LOADING,
+  ADVENTURER_CREATION_LOADING,
+  ADVENTURER_CREATION_LOADED,
   ADVENTURER_LOADING,
   ADVENTURERS_LIST,
   ADVENTURER_INFO,
@@ -9,16 +12,22 @@ import {
 
 export default function adventurerReducer(state = initialState.adventurer, action) {
   switch (action.type) {
+    case ADVENTURERS_LIST_LOADING:
+      return objectAssign({}, state, { listLoading: true });
+    case ADVENTURER_CREATION_LOADING:
+      return objectAssign({}, state, { creationLoading: true });
+    case ADVENTURER_CREATION_LOADED:
+      return objectAssign({}, state, { creationLoading: true });
     case ADVENTURER_LOADING:
-      return objectAssign({}, state, { loading: true });
+      return objectAssign({}, state, { infoLoading: true });
     case ADVENTURERS_LIST:
       return objectAssign({}, state, {
-        loading: false,
+        listLoading: false,
         userAdventurers: action.payload,
       });
     case ADVENTURER_INFO:
       return objectAssign({}, state, {
-        loading: false,
+        infoLoading: false,
         info: action.payload,
       });
     case UPDATE_POSITION:

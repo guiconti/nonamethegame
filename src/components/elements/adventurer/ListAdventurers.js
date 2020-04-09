@@ -12,7 +12,7 @@ const ListAdventurers = ({ adventurers, selectAdventurer, createAdventurer }) =>
     <Container>
       <Row justifyContent="center">
         {adventurers.map((adventurer) => (
-          <Item key={adventurer._id} xs={12} sm={6} md={4} className="list-adventurers--card">
+          <Item key={adventurer._id} xs={12} sm={6} md={3} className="list-adventurers--card">
             <SelectAdventurer
               _id={adventurer._id}
               name={adventurer.name}
@@ -23,7 +23,7 @@ const ListAdventurers = ({ adventurers, selectAdventurer, createAdventurer }) =>
             />
           </Item>
         ))}
-        <Item xs={12} sm={6} md={4} className="list-adventurers--card">
+        <Item xs={12} sm={6} md={3} className="list-adventurers--card">
           <CreateAdventurer createAdventurer={createAdventurer} />
         </Item>
       </Row>

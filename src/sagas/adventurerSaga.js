@@ -5,10 +5,17 @@ import {
   FETCH_SELECT_ADVENTURER,
   CREATE_NEW_ADVENTURER,
   EXIT_ADVENTURER_CREATION,
-  FETCH_CREATE_ADVENTURER
+  FETCH_CREATE_ADVENTURER,
 } from '../types/adventurer';
 import { changeRoute } from '../actions/navigationActions';
-import { loading, adventurersList, updateAdventurerInfo } from '../actions/adventurerActions';
+import {
+  listLoading,
+  creationLoading,
+  creationLoaded,
+  adventurerLoading,
+  adventurersList,
+  updateAdventurerInfo,
+} from '../actions/adventurerActions';
 import listAdventurers from '../apis/listAdventurers';
 import selectAdventurer from '../apis/selectAdventurer';
 import adventurerInfo from '../apis/adventurerInfo';
@@ -16,22 +23,22 @@ import createAdventurer from '../apis/createAdventurer';
 import { NEW_ADVENTURER, ADVENTURERS, HOME } from '../constants/routes';
 
 export function* fetchListAdventurers() {
-  yield put(loading());
+  yield put(listLoading());
   try {
     const response = yield call(listAdventurers);
     yield put(adventurersList(response.data));
-  } catch(err) {
+  } catch (err) {
     //  Handle error with an action
   }
 }
 
 export function* fetchSelectAdventurer(payload) {
-  yield put(loading());
+  yield put(adventurerLoading());
   try {
     const response = yield call(selectAdventurer, payload);
     yield put(updateAdventurerInfo(response.data));
     yield put(changeRoute(HOME));
-  } catch(err) {
+  } catch (err) {
     //  Handle error with an action
   }
 }
@@ -40,7 +47,7 @@ export function* fetchAdventurerInfo(payload) {
   try {
     const response = yield call(adventurerInfo, payload);
     yield put(updateAdventurerInfo(response.data));
-  } catch(err) {
+  } catch (err) {
     //  Handle error with an action
   }
 }
@@ -54,11 +61,13 @@ export function* exitAdventurerCreation() {
 }
 
 export function* fetchCreateAdventurer(payload) {
-  yield put(loading());
+  yield put(creationLoading());
   try {
     yield call(createAdventurer, payload);
+    yield put(creationLoaded());
     yield put(changeRoute(ADVENTURERS));
-  } catch(err) {
+  } catch (err) {
+    yield put(creationLoaded());
     //  Handle error with an action
   }
 }
@@ -112,6 +121,6 @@ export default function* watch() {
     fork(watchFetchAdventurerInfo),
     fork(watchCreateNewAdventurer),
     fork(watchExitAdventurerCreation),
-    fork(watchFetchCreateAdventurer)
+    fork(watchFetchCreateAdventurer),
   ]);
 }

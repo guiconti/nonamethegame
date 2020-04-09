@@ -1,4 +1,7 @@
 import {
+  ADVENTURERS_LIST_LOADING,
+  ADVENTURER_CREATION_LOADING,
+  ADVENTURER_CREATION_LOADED,
   ADVENTURER_LOADING,
   FETCH_LIST_ADVENTURERS,
   ADVENTURERS_LIST,
@@ -11,7 +14,25 @@ import {
   UPDATE_POSITION
 } from '../types/adventurer';
 
-export function loading() {
+export function listLoading() {
+  return {
+    type: ADVENTURERS_LIST_LOADING
+  };
+}
+
+export function creationLoading() {
+  return {
+    type: ADVENTURER_CREATION_LOADING
+  };
+}
+
+export function creationLoaded() {
+  return {
+    type: ADVENTURER_CREATION_LOADED
+  };
+}
+
+export function adventurerLoading() {
   return {
     type: ADVENTURER_LOADING
   };

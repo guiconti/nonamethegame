@@ -1,3 +1,7 @@
+import SwordIcon from '../components/icons/SwordIcon';
+import HatWizardIcon from '../components/icons/HatWizardIcon';
+import DaggerIcon from '../components/icons/DaggerIcon';
+
 export const CREATION_STEPS = ['Biography', 'Attributes', 'Traits'];
 export const NEW_ADVENTURER_ATTRIBUTES = {
   'strength': 1,
@@ -11,3 +15,8 @@ export const STARTING_POINTS = 9;
 export const CLASSES = ['Swordsman', 'Mage', 'Thief'];
 export const RACES = ['Human', 'Lizard', 'Undead', 'Dwarf', 'Elf'];
 export const GENDERS = ['Male', 'Female'];
+export const CLASS_ICONS = {
+  'Swordsman': SwordIcon,
+  'Mage': HatWizardIcon,
+  'Thief': DaggerIcon
+};

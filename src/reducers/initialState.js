@@ -6,7 +6,9 @@ export default {
     error: null,
   },
   adventurer: {
-    loading: true,
+    listLoading: true,
+    creationLoading: false,
+    infoLoading: true,
     userAdventurers: [],
     info: {},
     position: {},

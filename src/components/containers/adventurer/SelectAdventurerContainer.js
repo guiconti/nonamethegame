@@ -4,11 +4,11 @@ import LoadingIcon from '../../elements/shared/LoadingIcon';
 import ListAdventurers from '../../elements/adventurer/ListAdventurers';
 import ConfirmNewAdventurer from '../../elements/adventurer/ConfirmNewAdventurer';
 import { fetchListAdventurers, fetchSelectAdventurer, newAdventurer } from '../../../actions/adventurerActions';
-import { getAdventurerLoading, getAdventurers } from '../../../reducers/selectors';
+import { getAdventurerListLoading, getAdventurers } from '../../../reducers/selectors';
 
 const SelectAdventurerContainer = () => {
   const dispatch = useDispatch();
-  const loading = useSelector(getAdventurerLoading);
+  const loading = useSelector(getAdventurerListLoading);
   const adventurers = useSelector(getAdventurers);
   const [showAdventurerCreation, setShowAdventurerCreation] = useState(false);
 

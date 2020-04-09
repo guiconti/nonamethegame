@@ -5,7 +5,9 @@ export const getAuthLoading = state => state.auth.loading;
 export const getAuthShowError =state => state.auth.showError;
 
 //  Adventurer
-export const getAdventurerLoading = state => state.adventurer.loading;
+export const getAdventurerListLoading = state => state.adventurer.listLoading;
+export const getAdventurerCreationLoading = state => state.adventurer.creationLoading;
+export const getAdventurerLoading = state => state.adventurer.infoLoading;
 export const getAdventurers = state => state.adventurer.userAdventurers;
 export const getAdventurerName = state => state.adventurer.info.name;
 export const getAdventurerLevel = state => state.adventurer.info.level;
