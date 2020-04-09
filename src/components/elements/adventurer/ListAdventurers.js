@@ -1,26 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid } from '@material-ui/core';
+import Container from '../shared/Container';
+import Row from '../shared/Row';
+import Item from '../shared/Item';
 import SelectAdventurer from './SelectAdventurer';
 import CreateAdventurer from './CreateAdventurer';
 import './styles/listAdventurers.scss';
 
 const ListAdventurers = ({ adventurers, selectAdventurer, createAdventurer }) => {
   return (
-    <Grid container justify="center" className="list-adventurers">
-      {adventurers.map((adventurer) => (
-        <SelectAdventurer
-          key={adventurer._id}
-          _id={adventurer._id}
-          name={adventurer.name}
-          level={adventurer.level}
-          _class={adventurer.class}
-          race={adventurer.race}
-          selectAdventurer={selectAdventurer}
-        />
-      ))}
-      <CreateAdventurer createAdventurer={createAdventurer} />
-    </Grid>
+    <Container>
+      <Row justifyContent="center">
+        {adventurers.map((adventurer) => (
+          <Item key={adventurer._id} xs={12} sm={6} md={4} className="list-adventurers--card">
+            <SelectAdventurer
+              _id={adventurer._id}
+              name={adventurer.name}
+              level={adventurer.level}
+              _class={adventurer.class}
+              race={adventurer.race}
+              selectAdventurer={selectAdventurer}
+            />
+          </Item>
+        ))}
+        <Item xs={12} sm={6} md={4} className="list-adventurers--card">
+          <CreateAdventurer createAdventurer={createAdventurer} />
+        </Item>
+      </Row>
+    </Container>
   );
 };
 
