@@ -1,18 +1,8 @@
 .select-adventurer__card {
   margin-bottom: 32px;
+  display: inline-flex;
 }
 
-.select_adventurer__name {
-  text-overflow: ellipsis;
-}
-
-.select-adventurer__card-content {
+.select-adventurer__button {
   display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-}
-
-.select-adventurer__card-actions {
-  display: block;
 }

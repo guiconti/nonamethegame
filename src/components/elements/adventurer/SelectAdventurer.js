@@ -1,36 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../shared/Card';
+import Column from '../shared/Column';
+import Item from '../shared/Item';
 import Button from '../shared/Button';
-import { Grid, Typography } from '@material-ui/core';
 import './styles/selectAdventurer.scss';
 
 const SelectAdventurer = ({ _id, name, level, _class, race, selectAdventurer }) => {
   return (
-    <Grid item align="center" xs={12} sm={6} md={3}>
-      <Card className="select-adventurer__card">
-        <div className="select-adventurer__card-content">
-          <Grid container>
-            <Grid item xs={12} align="center">
-              <Typography className="select_adventurer__name" variant="subtitle1">
-                {name}
-              </Typography>
-            </Grid>
-            <Grid item xs={12} align="center" variant="subtitle2">
-              Level {level}
-            </Grid>
-            <Grid item xs={12} align="center" variant="subtitle2">
-              {_class} {race}
-            </Grid>
-          </Grid>
-        </div>
-        <div className="select-adventurer__card-actions">
-          <Button fullWidth onClick={() => selectAdventurer(_id)}>
+    <Card className="select-adventurer__card">
+      <Column justifyContent="space-between">
+        <Item xs={3}>
+          {name}
+        </Item>
+        <Item xs={3}>Level {level}</Item>
+        <Item xs={3}>
+          {_class} {race}
+        </Item>
+        <Item xs={2} justifySelf="end" className="select-adventurer__button">
+          <Button fullWidth tile onClick={() => selectAdventurer(_id)}>
             Select
           </Button>
-        </div>
-      </Card>
-    </Grid>
+        </Item>
+      </Column>
+    </Card>
   );
 };
 
