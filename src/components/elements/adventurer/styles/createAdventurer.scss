@@ -1,15 +1,12 @@
 .create-adventurer__card {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   margin-bottom: 32px; 
 }
 
-.create-adventurer__card-content {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
+.create-adventurer__title {
+  padding-top: 8px;
 }
 
 .create-adventurer__card-avatar {
