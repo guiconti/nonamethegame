@@ -6,9 +6,9 @@ import Alert from '../shared/Alert';
 import TextField from '../shared/TextField';
 import Button from '../shared/Button';
 import Link from '../shared/Link';
-import {
-  Grid
-} from '@material-ui/core';
+import Container from '../shared/Container';
+import Row from '../shared/Row';
+import Item from '../shared/Item';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import './styles/registerForm.scss';
 
@@ -98,18 +98,20 @@ const RegisterForm = ({
         >
           Register
         </Button>
-        <Grid container>
-          <Grid item xs>
-            <Link disabled={loading}>
-              Forgot password?
-            </Link>
-          </Grid>
-          <Grid item>
-            <Link disabled={loading} onClick={() => toggleIsRegistering(false)}>
-              Already have an account? Sign In
-            </Link>
-          </Grid>
-        </Grid>
+        <Container noPadding>
+          <Row justifyContent="space-between">
+            <Item>
+              <Link disabled={loading}>
+                Forgot password?
+              </Link>
+            </Item>
+            <Item>
+              <Link disabled={loading} onClick={() => toggleIsRegistering(false)}>
+                Already have an account? Sign In
+              </Link>
+            </Item>
+          </Row>
+        </Container>
       </form>
     </div>
   );
