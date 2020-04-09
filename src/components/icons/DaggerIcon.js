@@ -7,7 +7,7 @@ const DaggerIcon = ({ className, color, small, large, ...rest }) => {
   return (
     <svg
       className={clsx('icon', { 'icon--small': small }, { 'icon--large': large }, className)}
-      viewBox="0 0 512 512"
+      viewBox="0 0 400 512"
       style={{
         fill: color
       }}
