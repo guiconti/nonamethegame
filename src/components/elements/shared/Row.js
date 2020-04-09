@@ -15,9 +15,9 @@ const Row = ({
     <div
       className={clsx('row', className)}
       style={{
-        'justify-content': justifyContent,
-        'align-content': alignContent,
-        'align-items': alignItems,
+        justifyContent,
+        alignContent,
+        alignItems,
       }}
       {...rest}
     >

@@ -15,9 +15,9 @@ const Column = ({
     <div
       className={clsx('column', className)}
       style={{
-        'justify-content': justifyContent,
-        'align-content': alignContent,
-        'align-items': alignItems,
+        justifyContent,
+        alignContent,
+        alignItems,
       }}
       {...rest}
     >

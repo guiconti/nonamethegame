@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import GameSummaryInfo from '../../elements/game/GameSummaryInfo';
 import { fetchAdventurerInfo } from '../../../actions/adventurerActions';
 import {
+  getAdventurerLoading,
   getAdventurerName,
   getAdventurerLevel,
   getAdventurerExperience,
@@ -16,6 +17,7 @@ import {
 
 const GameSummaryInfoContainer = () => {
   const dispatch = useDispatch();
+  const loading = useSelector(getAdventurerLoading);
   const name = useSelector(getAdventurerName);
   const level = useSelector(getAdventurerLevel);
   const experience = useSelector(getAdventurerExperience);
@@ -32,17 +34,21 @@ const GameSummaryInfoContainer = () => {
 
   return (
     <>
-      <GameSummaryInfo
-        name={name}
-        level={level}
-        experience={experience}
-        health={health}
-        currentHealth={currentHealth}
-        mana={mana}
-        currentMana={currentMana}
-        _class={_class}
-        race={race}
-      />
+      {loading ? (
+        <> </>
+      ) : (
+        <GameSummaryInfo
+          name={name}
+          level={level}
+          experience={experience}
+          health={health}
+          currentHealth={currentHealth}
+          mana={mana}
+          currentMana={currentMana}
+          _class={_class}
+          race={race}
+        />
+      )}
     </>
   );
 };

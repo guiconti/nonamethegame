@@ -16,8 +16,8 @@ const Item = ({ children, className, xs, sm, md, lg, xl, justifySelf, alignSelf,
         className
       )}
       style={{
-        'justify-self': justifySelf,
-        'align-self': alignSelf,
+        justifySelf,
+        alignSelf
       }}
       {...rest}
     >

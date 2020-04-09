@@ -4,7 +4,7 @@ import Row from '../shared/Row';
 import Column from '../shared/Column';
 import Item from '../shared/Item';
 import Avatar from '../shared/Avatar';
-import SwordIcon from '../../icons/SwordIcon';
+import { CLASS_ICONS } from '../../../constants/adventurer';
 import './styles/gameSummaryInfo.scss';
 
 const GameSummaryInfo = ({
@@ -17,13 +17,14 @@ const GameSummaryInfo = ({
   currentMana,
   _class
 }) => {
+  const ClassIconComponent = CLASS_ICONS[_class] ? CLASS_ICONS[_class] : undefined;
   return (
     <Row justifyContent="start" alignItems="center">
       <Item xs={3} md={2}>
         <Column alignItems="center">
           <Item>
             <Avatar className="game-summary-info__class-avatar" outlined extraLarge>
-              <SwordIcon />
+              <ClassIconComponent />
             </Avatar>
           </Item>
           <Item>
