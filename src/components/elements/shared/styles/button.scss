@@ -56,13 +56,14 @@
 .button--text {
   background-color: white;
   color: color(primary-input);
-  border-color: white;
+  border-color: transparent;
 }
 
 .button--text:hover,
 .button--text:active {
   background-color: rgba(36, 82, 143, 0.1);
-  color: color(primary-input-dark)
+  color: color(primary-input-dark);
+  border-color: transparent;
 }
 
 .button--text:disabled {
