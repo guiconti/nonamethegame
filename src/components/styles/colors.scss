@@ -1,0 +1,61 @@
+@import './functions.scss';
+
+.primary {
+  background-color: color(primary);
+  border-color: color(primary);
+}
+
+.primary-dark {
+  background-color: color(primary-dark);
+  border-color: color(primary-dark);
+}
+
+.primary-light {
+  background-color: color(primary-light);
+  border-color: color(primary-light);
+}
+
+.primary--text {
+  color: color(primary);
+  caret-color: color(primary);
+}
+
+.primary-dark--text {
+  color: color(primary-dark);
+  caret-color: color(primary-dark);
+}
+
+.primary-light--text {
+  color: color(primary-light);
+  caret-color: color(primary-light);
+}
+
+.accent {
+  background-color: color(accent);
+  border-color: color(accent);
+}
+
+.accent-dark {
+  background-color: color(accent-dark);
+  border-color: color(accent-dark);
+}
+
+.accent-light {
+  background-color: color(accent-light);
+  border-color: color(accent-light);
+}
+
+.accent--text {
+  color: color(accent);
+  caret-color: color(accent);
+}
+
+.accent-dark--text {
+  color: color(accent-dark);
+  caret-color: color(accent-dark);
+}
+
+.accent-light--text {
+  color: color(accent-light);
+  caret-color: color(accent-light);
+}

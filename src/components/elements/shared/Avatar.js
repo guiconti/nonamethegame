@@ -7,19 +7,20 @@ const Avatar = ({
   children,
   className,
   outlined,
-  color,
-  large,
   small,
+  large,
+  extraLarge,
   ...rest
 }) => {
   return (
     <div
       className={clsx(
         'avatar',
-        className,
         { 'avatar--outlined': outlined },
+        { 'avatar--small': small },
         { 'avatar--large': large },
-        { 'avatar--small': small }
+        { 'avatar--extra-large': extraLarge },
+        className,
       )}
       {...rest}
     >
@@ -32,9 +33,9 @@ Avatar.propTypes = {
   children: PropTypes.any,
   className: PropTypes.string,
   outlined: PropTypes.bool,
-  color: PropTypes.string,
-  large: PropTypes.bool,
   small: PropTypes.bool,
+  large: PropTypes.bool,
+  extraLarge: PropTypes.bool,
 };
 
 export default Avatar;

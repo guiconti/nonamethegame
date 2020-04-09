@@ -1,4 +1,10 @@
+@import '../../../styles/functions.scss';
+
 .game-summary-info__text {
   font-size: 1.05em;
   text-align: center;
+}
+
+.game-summary-info__class-avatar {
+  border-color: color(primary-text-dark);
 }

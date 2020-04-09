@@ -14,6 +14,7 @@ const LoadingIcon = ({ className, outlined, text, large, small, ...rest }) => {
       )}
       viewBox="0 0 100 100"
       preserveAspectRatio="xMidYMid"
+      { ...rest }
     >
       <circle
         className={clsx(

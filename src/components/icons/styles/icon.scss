@@ -1,0 +1,17 @@
+@import '../../styles/functions.scss';
+
+.icon {
+  width: 3.125rem;
+  height: 3.125rem;
+  fill: color(primary-text-dark);
+}
+
+.icon--small {
+  width: 1.5625rem;
+  height: 1.5625rem;
+}
+
+.icon--large {
+  width: 4.6875rem;
+  height: 4.6875rem;
+}

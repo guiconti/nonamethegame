@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Typography } from '@material-ui/core';
+import Row from '../shared/Row';
+import Column from '../shared/Column';
+import Item from '../shared/Item';
+import Avatar from '../shared/Avatar';
+import SwordIcon from '../../icons/SwordIcon';
 import './styles/gameSummaryInfo.scss';
 
 const GameSummaryInfo = ({
@@ -14,42 +18,33 @@ const GameSummaryInfo = ({
   _class
 }) => {
   return (
-    <Grid container justify="center">
-      <Grid item xs={4}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Typography className="game-summary-info__text">{name}</Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography className="game-summary-info__text">Level: {level}</Typography>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid item xs={4}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Typography className="game-summary-info__text">{_class}</Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography className="game-summary-info__text">Experience: {experience}</Typography>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid item xs={4}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Typography className="game-summary-info__text">
-              HP: {currentHealth}/{health}
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography className="game-summary-info__text">
-              Mana: {currentMana}/{mana}
-            </Typography>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Grid>
+    <Row justifyContent="start" alignItems="center">
+      <Item xs={3} md={2}>
+        <Column alignItems="center">
+          <Item>
+            <Avatar className="game-summary-info__class-avatar" outlined extraLarge>
+              <SwordIcon />
+            </Avatar>
+          </Item>
+          <Item>
+            { _class }
+          </Item>
+        </Column>
+      </Item>
+      <Item xs={7} md={8}>
+        <Column>
+          <Item>
+            Lv { level }  {name}
+          </Item>
+          <Item>
+            HP { currentHealth }/{ health }
+          </Item>
+          <Item>
+            SP { currentMana }/{ mana }
+          </Item>
+        </Column>
+      </Item>
+    </Row>
   );
 };
 
