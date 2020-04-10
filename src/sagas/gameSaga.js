@@ -3,9 +3,9 @@ import connect from '../apis/connect';
 import gameMap from '../apis/gameMap';
 import { FETCH_CONNECT, FETCH_GAME_MAP, UPDATE_GAME_METADATA } from '../types/game';
 import { mapInfo, startDrawingMap } from '../actions/gameActions';
-import { visibleMonsters } from '../actions/monsterActions';
+import { visibleMonsters, visibleMonstersPositions } from '../actions/monsterActions';
 import { updatePosition } from '../actions/adventurerActions';
-import { getAdventurerPosition } from '../reducers/selectors';
+import { getAdventurerPosition, getVisibleMonstersPositions } from '../reducers/selectors';
 
 //  Executions
 
@@ -32,6 +32,7 @@ export function* updateGameMetadata(payload) {
   const newAdventurer = payload.adventurer;
   const monsters = payload.monsters;
   const oldPosition = yield select(getAdventurerPosition);
+
   //  Check if adventure's position changed
   if (
     !shouldRedrawnMinimap &&
@@ -40,8 +41,28 @@ export function* updateGameMetadata(payload) {
     yield put(updatePosition(newAdventurer.position));
     shouldRedrawnMinimap = true;
   }
+
   //  Visible monsters
-  //  TODO: Check for monster difference for redrawing minimap
+  let newVisibleMonstersPositions = {};
+  let visibleMonstersPositionsChanged = false;
+  const oldVisibleMonstersPositions = yield select(getVisibleMonstersPositions);
+  const monstersIds = Object.keys(monsters);
+  for (let i = 0; i < monstersIds.length; i++) {
+    const monster = monsters[monstersIds[i]];
+    const monsterPositionIndex = `${monster.position.x}-${monster.position.y}`;
+    newVisibleMonstersPositions[monsterPositionIndex] = monstersIds[i];
+    if (
+      !oldVisibleMonstersPositions[monsterPositionIndex] ||
+      oldVisibleMonstersPositions[monsterPositionIndex] !== monstersIds[i]
+    ) {
+      visibleMonstersPositionsChanged = true;
+    }
+  }
+  if (visibleMonstersPositionsChanged) {
+    shouldRedrawnMinimap = true;
+    yield put(visibleMonstersPositions(newVisibleMonstersPositions));
+  }
+
   yield put(visibleMonsters(monsters));
   if (shouldRedrawnMinimap) {
     yield put(startDrawingMap());

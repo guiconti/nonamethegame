@@ -20,6 +20,10 @@ export const getAdventurerClass = state => state.adventurer.info.class;
 export const getAdventurerRace = state => state.adventurer.info.race;
 export const getAdventurerPosition = state => state.adventurer.position;
 
+//  Monster
+export const getVisibleMonsters = state => state.monster.visibleMonsters;
+export const getVisibleMonstersPositions = state => state.monster.visibleMonstersPositions;
+
 //  Game
 export const getGameMap = state => state.game.map;
 export const getDrawMap = state => state.game.drawMap;
