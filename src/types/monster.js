@@ -1,0 +1,1 @@
+export const VISIBLE_MONSTERS = 'VISIBLE_MONSTERS';

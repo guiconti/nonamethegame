@@ -19,4 +19,7 @@ export default {
     map: [],
     drawMap: true,
   },
+  monster: {
+    visibleMonsters: {},
+  }
 };

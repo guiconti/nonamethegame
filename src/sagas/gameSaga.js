@@ -3,6 +3,7 @@ import connect from '../apis/connect';
 import gameMap from '../apis/gameMap';
 import { FETCH_CONNECT, FETCH_GAME_MAP, UPDATE_GAME_METADATA } from '../types/game';
 import { mapInfo, startDrawingMap } from '../actions/gameActions';
+import { visibleMonsters } from '../actions/monsterActions';
 import { updatePosition } from '../actions/adventurerActions';
 import { getAdventurerPosition } from '../reducers/selectors';
 
@@ -27,18 +28,22 @@ export function* fetchGameMap() {
 }
 
 export function* updateGameMetadata(payload) {
-  let shouldRedawnMinimap = false;
+  let shouldRedrawnMinimap = false;
   const newAdventurer = payload.adventurer;
+  const monsters = payload.monsters;
   const oldPosition = yield select(getAdventurerPosition);
   //  Check if adventure's position changed
   if (
-    !shouldRedawnMinimap &&
+    !shouldRedrawnMinimap &&
     (oldPosition.x !== newAdventurer.position.x || oldPosition.y !== newAdventurer.position.y)
   ) {
     yield put(updatePosition(newAdventurer.position));
-    shouldRedawnMinimap = true;
+    shouldRedrawnMinimap = true;
   }
-  if (shouldRedawnMinimap) {
+  //  Visible monsters
+  //  TODO: Check for monster difference for redrawing minimap
+  yield put(visibleMonsters(monsters));
+  if (shouldRedrawnMinimap) {
     yield put(startDrawingMap());
   }
 }
