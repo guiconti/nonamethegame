@@ -1,19 +1,29 @@
 import React from 'react';
+import Container from '../elements/shared/Container';
+import Row from '../elements/shared/Row';
+import Column from '../elements/shared/Column';
+import Item from '../elements/shared/Item';
 import GameSummaryInfoContainer from '../containers/game/GameSummaryInfoContainer';
 import GameMapContainer from '../containers/game/GameMapContainer';
 import GameContainer from '../containers/game/GameContainer';
-import Container from '../elements/shared/Container';
-import { Grid } from '@material-ui/core';
 import './styles/game.scss';
 
 const Game = () => {
   return (
     <Container>
-      <GameSummaryInfoContainer />
-      <Grid item xs={12} align="end" className="game__map">
-        <GameMapContainer />
-      </Grid>
       <GameContainer />
+      <Row>
+        <Item xs={12}>
+          <GameSummaryInfoContainer />
+        </Item>
+        <Item xs={12}>
+          <Column justifyContent="flex-start" alignItems="end">
+            <Item>
+              <GameMapContainer />
+            </Item>
+          </Column>
+        </Item>
+      </Row>
     </Container>
   );
 };
