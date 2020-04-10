@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import Column from '../shared/Column';
 import Item from '../shared/Item';
 import HealthBar from './HealthBar';
@@ -7,9 +8,12 @@ import './styles/monstersListItem.scss';
 
 const MonstersListItem = ({ monster, monsterId, onMonsterSelect, selected }) => {
   return (
-    <Column className='monster-list-item' onClick={() => onMonsterSelect(monsterId)}>
+    <Column
+      className={clsx('monster-list-item', { 'monster-list-item--selected': selected })}
+      onClick={() => onMonsterSelect(monsterId)}
+    >
       <Item>
-        {monster.name} {selected ? ' - selected!' : ''}
+        {monster.name}
       </Item>
       <Item>
         <HealthBar

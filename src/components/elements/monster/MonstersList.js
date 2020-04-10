@@ -14,7 +14,7 @@ const GameMonstersList = ({ monsters, onMonsterSelect, selectedMonsterId }) => {
           <div className='monsters-list__title'>Monsters</div>
         </Item>
         <Item className='monsters-list__flex-item'>
-          <Column className='monsters-list__column monsters-list__monsters'>
+          <Column className='monsters-list__column'>
             {monsterIds ? (
               monsterIds.map(monsterId => {
                 return (
