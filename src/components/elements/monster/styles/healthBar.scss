@@ -1,0 +1,10 @@
+@import '../../../styles/functions.scss';
+
+.health-bar {
+  border-color: color(health);
+  color: color(health-dark);
+
+  .progress-bar__filled {
+    background-color: color(health);
+  }
+}

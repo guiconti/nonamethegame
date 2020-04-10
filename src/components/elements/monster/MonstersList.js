@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Column from '../shared/Column';
 import Item from '../shared/Item';
-import GameMonstersListItem from './GameMonstersListItem';
-import './styles/gameMonstersList.scss';
+import MonstersListItem from './MonstersListItem';
+import './styles/monstersList.scss';
 
 const GameMonstersList = ({ monsters }) => {
   const monsterIds = Object.keys(monsters);
@@ -19,7 +19,7 @@ const GameMonstersList = ({ monsters }) => {
               monsterIds.map(monster => {
                 return (
                   <Item key={monster}>
-                    <GameMonstersListItem monster={monsters[monster]} />
+                    <MonstersListItem monster={monsters[monster]} />
                   </Item>
                 );
               })
