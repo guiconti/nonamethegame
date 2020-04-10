@@ -1,11 +1,13 @@
 import { put, call, select, take, fork, all } from 'redux-saga/effects';
 import connect from '../apis/connect';
 import gameMap from '../apis/gameMap';
-import { FETCH_CONNECT, FETCH_GAME_MAP, UPDATE_GAME_METADATA } from '../types/game';
+import { FETCH_CONNECT, FETCH_GAME_MAP, UPDATE_GAME_METADATA, TARGET_MONSTER } from '../types/game';
 import { mapInfo, startDrawingMap } from '../actions/gameActions';
 import { visibleMonsters, visibleMonstersPositions } from '../actions/monsterActions';
 import { updatePosition } from '../actions/adventurerActions';
 import { getAdventurerPosition, getVisibleMonstersPositions } from '../reducers/selectors';
+import webSocket from '../webSocket';
+import { SOCKET_TARGET_MONSTER } from '../constants/sockets';
 
 //  Executions
 
@@ -72,6 +74,10 @@ export function* updateGameMetadata(payload) {
   }
 }
 
+function* targetMonster(payload) {
+  yield webSocket.emit(SOCKET_TARGET_MONSTER, payload);
+}
+
 //  Watchers
 
 function* watchFetchConnect() {
@@ -95,6 +101,18 @@ function* watchUpdateGameMetadata() {
   }
 }
 
+function* watchTargetMonster() {
+  while (true) {
+    const { payload } = yield take(TARGET_MONSTER);
+    yield fork(targetMonster, payload);
+  }
+}
+
 export default function* watch() {
-  yield all([fork(watchFetchConnect), fork(watchFetchGameMap), fork(watchUpdateGameMetadata)]);
+  yield all([
+    fork(watchFetchConnect),
+    fork(watchFetchGameMap),
+    fork(watchUpdateGameMetadata),
+    fork(watchTargetMonster),
+  ]);
 }

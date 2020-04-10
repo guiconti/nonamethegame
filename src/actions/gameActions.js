@@ -7,18 +7,19 @@ import {
   MAP_INFO,
   STOP_DRAWING_MAP,
   START_DRAWING_MAP,
-  UPDATE_GAME_METADATA
+  UPDATE_GAME_METADATA,
+  TARGET_MONSTER,
 } from '../types/game';
 
 export function loading() {
   return {
-    type: LOADING
+    type: LOADING,
   };
 }
 
 export function fetchConnect() {
   return {
-    type: FETCH_CONNECT
+    type: FETCH_CONNECT,
   };
 }
 
@@ -36,19 +37,19 @@ export function disconnected() {
 
 export function fetchGameMap() {
   return {
-    type: FETCH_GAME_MAP
+    type: FETCH_GAME_MAP,
   };
 }
 
 export function stopDrawingMap() {
   return {
-    type: STOP_DRAWING_MAP
+    type: STOP_DRAWING_MAP,
   };
 }
 
 export function startDrawingMap() {
   return {
-    type: START_DRAWING_MAP
+    type: START_DRAWING_MAP,
   };
 }
 
@@ -62,6 +63,13 @@ export function mapInfo(payload) {
 export function updateGameMetadata(payload) {
   return {
     type: UPDATE_GAME_METADATA,
+    payload,
+  };
+}
+
+export function targetMonster(payload) {
+  return {
+    type: TARGET_MONSTER,
     payload,
   };
 }
