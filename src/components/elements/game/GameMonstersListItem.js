@@ -4,7 +4,7 @@ import './styles/gameMonstersListItem.scss';
 
 const GameMonstersListItem = ({ monster }) => {
   return (
-    <div className='monster-list-item'>Monster!</div>
+    <div className='monster-list-item'>{ monster.name }</div>
   );
 };
 

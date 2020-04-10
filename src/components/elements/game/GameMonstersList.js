@@ -6,27 +6,26 @@ import GameMonstersListItem from './GameMonstersListItem';
 import './styles/gameMonstersList.scss';
 
 const GameMonstersList = ({ monsters }) => {
+  const monsterIds = Object.keys(monsters);
   return (
     <div className='monsters-list'>
-      <Column className="monsters-list__column">
+      <Column className='monsters-list__column'>
         <Item>
           <div className='monsters-list__title'>Monsters</div>
         </Item>
-        <Item className="monsters-list__flex-item">
+        <Item className='monsters-list__flex-item'>
           <Column className='monsters-list__column monsters-list__monsters'>
-            <GameMonstersListItem />
-            <GameMonstersListItem />
-            <GameMonstersListItem />
-            <GameMonstersListItem />
-            <GameMonstersListItem />
-            <GameMonstersListItem />
-            <GameMonstersListItem />
-            <GameMonstersListItem />
-            <GameMonstersListItem />
-            <GameMonstersListItem />
-            <GameMonstersListItem />
-            <GameMonstersListItem />
-            <GameMonstersListItem />
+            {monsterIds ? (
+              monsterIds.map(monster => {
+                return (
+                  <Item key={monster}>
+                    <GameMonstersListItem monster={monsters[monster]} />
+                  </Item>
+                );
+              })
+            ) : (
+              <> </>
+            )}
           </Column>
         </Item>
       </Column>
@@ -35,7 +34,7 @@ const GameMonstersList = ({ monsters }) => {
 };
 
 GameMonstersList.propTypes = {
-  monsters: PropTypes.array,
+  monsters: PropTypes.object,
 };
 
 export default GameMonstersList;

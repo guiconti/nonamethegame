@@ -58,12 +58,15 @@ export function* updateGameMetadata(payload) {
       visibleMonstersPositionsChanged = true;
     }
   }
-  if (visibleMonstersPositionsChanged) {
+  if (
+    visibleMonstersPositionsChanged ||
+    monstersIds.length !== Object.keys(oldVisibleMonstersPositions).length
+  ) {
     shouldRedrawnMinimap = true;
     yield put(visibleMonstersPositions(newVisibleMonstersPositions));
+    yield put(visibleMonsters(monsters));
   }
 
-  yield put(visibleMonsters(monsters));
   if (shouldRedrawnMinimap) {
     yield put(startDrawingMap());
   }
