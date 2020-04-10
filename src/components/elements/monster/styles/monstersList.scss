@@ -6,6 +6,8 @@
   background-color: transparent;
   border-radius: 4px;
   border: 2px solid color(primary-input-dark);
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .monsters-list__column {

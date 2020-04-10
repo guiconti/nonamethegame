@@ -5,10 +5,12 @@ import Item from '../shared/Item';
 import HealthBar from './HealthBar';
 import './styles/monstersListItem.scss';
 
-const MonstersListItem = ({ monster }) => {
+const MonstersListItem = ({ monster, monsterId, onMonsterSelect, selected }) => {
   return (
-    <Column className='monster-list-item'>
-      <Item> {monster.name} </Item>
+    <Column className='monster-list-item' onClick={() => onMonsterSelect(monsterId)}>
+      <Item>
+        {monster.name} {selected ? ' - selected!' : ''}
+      </Item>
       <Item>
         <HealthBar
           className='monster-list-item__health-bar'
@@ -22,6 +24,9 @@ const MonstersListItem = ({ monster }) => {
 
 MonstersListItem.propTypes = {
   monster: PropTypes.object,
+  monsterId: PropTypes.string,
+  onMonsterSelect: PropTypes.func,
+  selected: PropTypes.bool,
 };
 
 export default MonstersListItem;

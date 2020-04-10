@@ -5,7 +5,7 @@ import Item from '../shared/Item';
 import MonstersListItem from './MonstersListItem';
 import './styles/monstersList.scss';
 
-const GameMonstersList = ({ monsters }) => {
+const GameMonstersList = ({ monsters, onMonsterSelect, selectedMonsterId }) => {
   const monsterIds = Object.keys(monsters);
   return (
     <div className='monsters-list'>
@@ -16,10 +16,15 @@ const GameMonstersList = ({ monsters }) => {
         <Item className='monsters-list__flex-item'>
           <Column className='monsters-list__column monsters-list__monsters'>
             {monsterIds ? (
-              monsterIds.map(monster => {
+              monsterIds.map(monsterId => {
                 return (
-                  <Item key={monster}>
-                    <MonstersListItem monster={monsters[monster]} />
+                  <Item key={monsterId}>
+                    <MonstersListItem
+                      monster={monsters[monsterId]}
+                      monsterId={monsterId}
+                      onMonsterSelect={onMonsterSelect}
+                      selected={selectedMonsterId === monsterId}
+                    />
                   </Item>
                 );
               })
@@ -35,6 +40,8 @@ const GameMonstersList = ({ monsters }) => {
 
 GameMonstersList.propTypes = {
   monsters: PropTypes.object,
+  onMonsterSelect: PropTypes.func,
+  selectedMonsterId: PropTypes.string,
 };
 
 export default GameMonstersList;
