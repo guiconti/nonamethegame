@@ -30,6 +30,7 @@ export default function adventurerReducer(state = initialState.adventurer, actio
       });
     case ADVENTURER_INFO:
       return objectAssign({}, state, {
+        _id : action.payload._id ? action.payload._id : state._id,
         name: action.payload.name ? action.payload.name : state.name,
         level: action.payload.level ? action.payload.level : state.level,
         class: action.payload.class ? action.payload.class : state.class,

@@ -10,6 +10,7 @@ export default {
     creationLoading: false,
     infoLoading: true,
     userAdventurers: [],
+    _id: '',
     name: '',
     level: 1,
     class: '',
