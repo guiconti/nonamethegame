@@ -4,8 +4,13 @@ import gameMap from '../apis/gameMap';
 import { FETCH_CONNECT, FETCH_GAME_MAP, UPDATE_GAME_METADATA, TARGET_MONSTER } from '../types/game';
 import { mapInfo, startDrawingMap } from '../actions/gameActions';
 import { visibleMonsters, visibleMonstersPositions, updateTarget } from '../actions/monsterActions';
-import { updatePosition } from '../actions/adventurerActions';
+import { updatePosition, updateAdventurerInfo } from '../actions/adventurerActions';
 import {
+  getAdventurerHealth,
+  getAdventurerCurrentHealth,
+  getAdventurerMana,
+  getAdventurerCurrentMana,
+  getAdventurerExperience,
   getAdventurerPosition,
   getVisibleMonsters,
   getVisibleMonstersPositions,
@@ -34,6 +39,23 @@ export function* fetchGameMap() {
   }
 }
 
+export function* checkAdventurerInfoUpdate(payload) {
+  const currentAdventurer = {
+    health: yield select(getAdventurerHealth),
+    currentHealth: yield select(getAdventurerCurrentHealth),
+    mana: yield select(getAdventurerMana),
+    currentMana: yield select(getAdventurerCurrentMana),
+    experience: yield select(getAdventurerExperience)
+  };
+  const keys = Object.keys(currentAdventurer);
+  for (let i = 0; i < keys.length; i++) {
+    if (payload[keys[i]] && currentAdventurer[keys[i]] !== payload[keys[i]]) {
+      yield put(updateAdventurerInfo(payload));
+      return;
+    }
+  }
+}
+
 export function* checkTargetUpdate(payload) {
   const currentTarget = yield select(getTarget);
   if (currentTarget !== payload) {
@@ -47,6 +69,7 @@ export function* updateGameMetadata(payload) {
 
   // Call updations
   yield fork(checkTargetUpdate, newAdventurer.target);
+  yield fork(checkAdventurerInfoUpdate, newAdventurer);
 
   let shouldRedrawnMinimap = false;
   const oldPosition = yield select(getAdventurerPosition);
