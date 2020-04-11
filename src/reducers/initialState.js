@@ -22,5 +22,6 @@ export default {
   monster: {
     visibleMonsters: {},
     visibleMonstersPositions: {},
+    target: null,
   }
 };

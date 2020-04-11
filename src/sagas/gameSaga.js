@@ -3,12 +3,13 @@ import connect from '../apis/connect';
 import gameMap from '../apis/gameMap';
 import { FETCH_CONNECT, FETCH_GAME_MAP, UPDATE_GAME_METADATA, TARGET_MONSTER } from '../types/game';
 import { mapInfo, startDrawingMap } from '../actions/gameActions';
-import { visibleMonsters, visibleMonstersPositions } from '../actions/monsterActions';
+import { visibleMonsters, visibleMonstersPositions, updateTarget } from '../actions/monsterActions';
 import { updatePosition } from '../actions/adventurerActions';
 import {
   getAdventurerPosition,
   getVisibleMonsters,
   getVisibleMonstersPositions,
+  getTarget,
 } from '../reducers/selectors';
 import webSocket from '../webSocket';
 import { SOCKET_TARGET_MONSTER } from '../constants/sockets';
@@ -33,10 +34,21 @@ export function* fetchGameMap() {
   }
 }
 
+export function* checkTargetUpdate(payload) {
+  const currentTarget = yield select(getTarget);
+  if (currentTarget !== payload) {
+    yield put(updateTarget(payload));
+  }
+}
+
 export function* updateGameMetadata(payload) {
-  let shouldRedrawnMinimap = false;
   const newAdventurer = payload.adventurer;
   const monsters = payload.monsters;
+
+  // Call updations
+  yield fork(checkTargetUpdate, newAdventurer.target);
+
+  let shouldRedrawnMinimap = false;
   const oldPosition = yield select(getAdventurerPosition);
 
   //  Check if adventure's position changed
@@ -67,7 +79,7 @@ export function* updateGameMetadata(payload) {
     }
     if (
       !oldVisibleMonsterStatus[monstersIds[i]] ||
-      !oldVisibleMonsterStatus[monstersIds[i]].health !== monsters[monstersIds[i]].health
+      oldVisibleMonsterStatus[monstersIds[i]].currentHealth !== monsters[monstersIds[i]].currentHealth
     ) {
       monsterStatusUpdated = true;
     }

@@ -1,4 +1,4 @@
-import { VISIBLE_MONSTERS, VISIBLE_MONSTERS_POSITIONS } from '../types/monster';
+import { VISIBLE_MONSTERS, VISIBLE_MONSTERS_POSITIONS, UPDATE_TARGET } from '../types/monster';
 
 export function visibleMonsters(payload) {
   return {
@@ -10,6 +10,12 @@ export function visibleMonsters(payload) {
 export function visibleMonstersPositions(payload) {
   return {
     type: VISIBLE_MONSTERS_POSITIONS,
+    payload,
+  };
+}
+export function updateTarget(payload) {
+  return {
+    type: UPDATE_TARGET,
     payload,
   };
 }

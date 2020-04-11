@@ -23,6 +23,7 @@ export const getAdventurerPosition = state => state.adventurer.position;
 //  Monster
 export const getVisibleMonsters = state => state.monster.visibleMonsters;
 export const getVisibleMonstersPositions = state => state.monster.visibleMonstersPositions;
+export const getTarget = state => state.monster.target;
 
 //  Game
 export const getGameMap = state => state.game.map;
