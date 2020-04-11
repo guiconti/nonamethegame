@@ -5,7 +5,11 @@ import { FETCH_CONNECT, FETCH_GAME_MAP, UPDATE_GAME_METADATA, TARGET_MONSTER } f
 import { mapInfo, startDrawingMap } from '../actions/gameActions';
 import { visibleMonsters, visibleMonstersPositions } from '../actions/monsterActions';
 import { updatePosition } from '../actions/adventurerActions';
-import { getAdventurerPosition, getVisibleMonstersPositions } from '../reducers/selectors';
+import {
+  getAdventurerPosition,
+  getVisibleMonsters,
+  getVisibleMonstersPositions,
+} from '../reducers/selectors';
 import webSocket from '../webSocket';
 import { SOCKET_TARGET_MONSTER } from '../constants/sockets';
 
@@ -47,6 +51,8 @@ export function* updateGameMetadata(payload) {
   //  Visible monsters
   let newVisibleMonstersPositions = {};
   let visibleMonstersPositionsChanged = false;
+  let monsterStatusUpdated = false;
+  const oldVisibleMonsterStatus = yield select(getVisibleMonsters);
   const oldVisibleMonstersPositions = yield select(getVisibleMonstersPositions);
   const monstersIds = Object.keys(monsters);
   for (let i = 0; i < monstersIds.length; i++) {
@@ -59,6 +65,12 @@ export function* updateGameMetadata(payload) {
     ) {
       visibleMonstersPositionsChanged = true;
     }
+    if (
+      !oldVisibleMonsterStatus[monstersIds[i]] ||
+      !oldVisibleMonsterStatus[monstersIds[i]].health !== monsters[monstersIds[i]].health
+    ) {
+      monsterStatusUpdated = true;
+    }
   }
   if (
     visibleMonstersPositionsChanged ||
@@ -66,6 +78,8 @@ export function* updateGameMetadata(payload) {
   ) {
     shouldRedrawnMinimap = true;
     yield put(visibleMonstersPositions(newVisibleMonstersPositions));
+    yield put(visibleMonsters(monsters));
+  } else if (monsterStatusUpdated) {
     yield put(visibleMonsters(monsters));
   }
 
