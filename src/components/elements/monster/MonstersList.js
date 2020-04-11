@@ -5,7 +5,7 @@ import Item from '../shared/Item';
 import MonstersListItem from './MonstersListItem';
 import './styles/monstersList.scss';
 
-const GameMonstersList = ({ monsters, onMonsterSelect, selectedMonsterId }) => {
+const GameMonstersList = ({ monsters, adventurerId, onMonsterSelect, selectedMonsterId }) => {
   const monsterIds = Object.keys(monsters);
   return (
     <div className='monsters-list'>
@@ -22,6 +22,7 @@ const GameMonstersList = ({ monsters, onMonsterSelect, selectedMonsterId }) => {
                     <MonstersListItem
                       monster={monsters[monsterId]}
                       monsterId={monsterId}
+                      adventurerId={adventurerId}
                       onMonsterSelect={onMonsterSelect}
                       selected={selectedMonsterId === monsterId}
                     />
@@ -40,6 +41,7 @@ const GameMonstersList = ({ monsters, onMonsterSelect, selectedMonsterId }) => {
 
 GameMonstersList.propTypes = {
   monsters: PropTypes.object,
+  adventurerId: PropTypes.string,
   onMonsterSelect: PropTypes.func,
   selectedMonsterId: PropTypes.string,
 };

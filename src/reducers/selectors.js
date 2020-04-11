@@ -9,6 +9,7 @@ export const getAdventurerListLoading = state => state.adventurer.listLoading;
 export const getAdventurerCreationLoading = state => state.adventurer.creationLoading;
 export const getAdventurerLoading = state => state.adventurer.infoLoading;
 export const getAdventurers = state => state.adventurer.userAdventurers;
+export const getAdventurerId = state => state.adventurer._id;
 export const getAdventurerName = state => state.adventurer.name;
 export const getAdventurerLevel = state => state.adventurer.level;
 export const getAdventurerClass = state => state.adventurer.class;

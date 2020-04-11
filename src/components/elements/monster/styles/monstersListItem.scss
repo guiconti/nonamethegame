@@ -15,6 +15,11 @@
   background-color: rgba(5, 54, 139, 0.3);
 }
 
+.monster-list-item--status {
+  margin-left: auto;
+  color: color(error)
+}
+
 .monster-list-item__health-bar {
   width: 100%;
 }
