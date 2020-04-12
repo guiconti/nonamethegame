@@ -17,6 +17,12 @@ export default {
     race: '',
     info: {},
     position: {},
+    inventory: {
+      miscellaneous: {},
+      consumable: {},
+      equipment: {},
+      card: {},
+    },
   },
   game: {
     loading: false,
@@ -31,7 +37,7 @@ export default {
   },
   item: {
     listLoading: true,
-    list: {}
+    list: {},
   },
   battleLog: {
     messages: [],

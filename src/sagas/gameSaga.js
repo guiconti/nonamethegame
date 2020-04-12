@@ -4,7 +4,11 @@ import gameMap from '../apis/gameMap';
 import { FETCH_CONNECT, FETCH_GAME_MAP, UPDATE_GAME_METADATA, TARGET_MONSTER } from '../types/game';
 import { mapInfo, startDrawingMap } from '../actions/gameActions';
 import { visibleMonsters, visibleMonstersPositions, updateTarget } from '../actions/monsterActions';
-import { updatePosition, updateAdventurerInfo } from '../actions/adventurerActions';
+import {
+  updatePosition,
+  updateAdventurerInfo,
+  updateInventory,
+} from '../actions/adventurerActions';
 import {
   getAdventurerHealth,
   getAdventurerCurrentHealth,
@@ -15,6 +19,7 @@ import {
   getVisibleMonsters,
   getVisibleMonstersPositions,
   getTarget,
+  getAdventurerInventory,
 } from '../reducers/selectors';
 import webSocket from '../webSocket';
 import { SOCKET_TARGET_MONSTER } from '../constants/sockets';
@@ -45,7 +50,7 @@ export function* checkAdventurerInfoUpdate(payload) {
     currentHealth: yield select(getAdventurerCurrentHealth),
     mana: yield select(getAdventurerMana),
     currentMana: yield select(getAdventurerCurrentMana),
-    experience: yield select(getAdventurerExperience)
+    experience: yield select(getAdventurerExperience),
   };
   const keys = Object.keys(currentAdventurer);
   for (let i = 0; i < keys.length; i++) {
@@ -63,6 +68,70 @@ export function* checkTargetUpdate(payload) {
   }
 }
 
+export function* checkAdventurerInventoryUpdate(payload) {
+  const newMiscellaneous = Object.keys(payload.miscellaneous);
+  const newConsumable = Object.keys(payload.consumable);
+  const newEquipment = Object.keys(payload.equipment);
+  const newCard = Object.keys(payload.card);
+  const currentInventory = yield select(getAdventurerInventory);
+  const currentMiscellaneous = Object.keys(currentInventory.miscellaneous);
+  const currentConsumable = Object.keys(currentInventory.consumable);
+  const currentEquipment = Object.keys(currentInventory.equipment);
+  const currentCard = Object.keys(currentInventory.card);
+  if (currentMiscellaneous.length !== newMiscellaneous.length) {
+    yield put(updateInventory(payload));
+    return;
+  }
+  if (currentConsumable.length !== newConsumable.length) {
+    yield put(updateInventory(payload));
+    return;
+  }
+  if (currentEquipment.length !== newEquipment.length) {
+    yield put(updateInventory(payload));
+    return;
+  }
+  if (currentCard.length !== newCard.length) {
+    yield put(updateInventory(payload));
+    return;
+  }
+  for (let i = 0; i < currentMiscellaneous.length; i++) {
+    if (
+      !payload.miscellaneous[currentMiscellaneous[i]] ||
+      payload.miscellaneous[currentMiscellaneous[i]].amount !== currentInventory.miscellaneous[currentMiscellaneous[i]].amount
+    ) {
+      yield put(updateInventory(payload));
+      return;
+    }
+  }
+  for (let i = 0; i < currentConsumable.length; i++) {
+    if (
+      !payload.consumable[currentConsumable[i]] ||
+      payload.consumable[currentConsumable[i]].amount !== currentInventory.consumable[currentConsumable[i]].amount
+    ) {
+      yield put(updateInventory(payload));
+      return;
+    }
+  }
+  for (let i = 0; i < currentEquipment.length; i++) {
+    if (
+      !payload.equipment[currentEquipment[i]] ||
+      payload.equipment[currentEquipment[i]].amount !== currentInventory.equipment[currentEquipment[i]].amount
+    ) {
+      yield put(updateInventory(payload));
+      return;
+    }
+  }
+  for (let i = 0; i < currentCard.length; i++) {
+    if (
+      !payload.card[currentCard[i]] ||
+      payload.card[currentCard[i]].amount !== currentInventory.card[currentCard[i]].amount
+    ) {
+      yield put(updateInventory(payload));
+      return;
+    }
+  }
+}
+
 export function* updateGameMetadata(payload) {
   const newAdventurer = payload.adventurer;
   const monsters = payload.monsters;
@@ -70,6 +139,7 @@ export function* updateGameMetadata(payload) {
   // Call updations
   yield fork(checkTargetUpdate, newAdventurer.target);
   yield fork(checkAdventurerInfoUpdate, newAdventurer);
+  yield fork(checkAdventurerInventoryUpdate, newAdventurer.inventory);
 
   let shouldRedrawnMinimap = false;
   const oldPosition = yield select(getAdventurerPosition);
@@ -102,7 +172,8 @@ export function* updateGameMetadata(payload) {
     }
     if (
       !oldVisibleMonsterStatus[monstersIds[i]] ||
-      oldVisibleMonsterStatus[monstersIds[i]].currentHealth !== monsters[monstersIds[i]].currentHealth
+      oldVisibleMonsterStatus[monstersIds[i]].currentHealth !==
+        monsters[monstersIds[i]].currentHealth
     ) {
       monsterStatusUpdated = true;
     }

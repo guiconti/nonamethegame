@@ -44,8 +44,6 @@ const GameContainer = () => {
   };
 
   useEffect(() => {
-    //  Load data
-    dispatch(fetchItemsList());
     dispatch(fetchConnect());
 
     //  Websocket events

@@ -13,6 +13,7 @@ import {
   EXIT_ADVENTURER_CREATION,
   FETCH_CREATE_ADVENTURER,
   UPDATE_POSITION,
+  UPDATE_INVENTORY,
 } from '../types/adventurer';
 
 export function listLoading() {
@@ -100,6 +101,13 @@ export function fetchCreateAdventurer(payload) {
 export function updatePosition(payload) {
   return {
     type: UPDATE_POSITION,
+    payload,
+  };
+}
+
+export function updateInventory(payload) {
+  return {
+    type: UPDATE_INVENTORY,
     payload,
   };
 }

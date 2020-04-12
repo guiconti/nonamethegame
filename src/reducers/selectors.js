@@ -20,6 +20,7 @@ export const getAdventurerCurrentHealth = state => state.adventurer.info.current
 export const getAdventurerMana = state => state.adventurer.info.mana;
 export const getAdventurerCurrentMana = state => state.adventurer.info.currentMana;
 export const getAdventurerPosition = state => state.adventurer.position;
+export const getAdventurerInventory = state => state.adventurer.inventory;
 
 //  Monster
 export const getVisibleMonsters = state => state.monster.visibleMonsters;
@@ -32,3 +33,7 @@ export const getDrawMap = state => state.game.drawMap;
 
 //  Batle log
 export const getBattleLogMessages = state => state.battleLog.messages;
+
+//  Item
+export const getLoadingItems = state => state.item.listLoading;
+export const getItems = state => state.item.list;

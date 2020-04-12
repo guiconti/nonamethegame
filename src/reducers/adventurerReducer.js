@@ -9,6 +9,7 @@ import {
   ADVENTURERS_LIST,
   ADVENTURER_INFO,
   UPDATE_POSITION,
+  UPDATE_INVENTORY,
 } from '../types/adventurer';
 
 export default function adventurerReducer(state = initialState.adventurer, action) {
@@ -30,7 +31,7 @@ export default function adventurerReducer(state = initialState.adventurer, actio
       });
     case ADVENTURER_INFO:
       return objectAssign({}, state, {
-        _id : action.payload._id ? action.payload._id : state._id,
+        _id: action.payload._id ? action.payload._id : state._id,
         name: action.payload.name ? action.payload.name : state.name,
         level: action.payload.level ? action.payload.level : state.level,
         class: action.payload.class ? action.payload.class : state.class,
@@ -41,6 +42,8 @@ export default function adventurerReducer(state = initialState.adventurer, actio
       return objectAssign({}, state, {
         position: action.payload,
       });
+    case UPDATE_INVENTORY:
+      return objectAssign({}, state, { inventory: action.payload });
     default:
       return state;
   }
