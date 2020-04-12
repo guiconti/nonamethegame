@@ -29,3 +29,6 @@ export const getTarget = state => state.monster.target;
 //  Game
 export const getGameMap = state => state.game.map;
 export const getDrawMap = state => state.game.drawMap;
+
+//  Batle log
+export const getBattleLogMessages = state => state.battleLog.messages;

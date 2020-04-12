@@ -7,6 +7,7 @@ import GameContainer from '../containers/game/GameContainer';
 import GameSummaryInfoContainer from '../containers/game/GameSummaryInfoContainer';
 import GameMapContainer from '../containers/game/GameMapContainer';
 import GameMonstersList from '../containers/game/GameMonstersListContainer';
+import BattleLogContainer from '../containers/game/BattleLogContainer';
 import './styles/game.scss';
 
 const Game = () => {
@@ -18,14 +19,21 @@ const Game = () => {
           <GameSummaryInfoContainer />
         </Item>
         <Item xs={12}>
-          <Column justifyContent="flex-start" alignItems="flex-end">
-            <Item>
-              <GameMapContainer />
+          <Row justifyContent='flex-start' alignItems='flex-start'>
+            <Item className='game__battle-log'>
+              <BattleLogContainer />
             </Item>
             <Item>
-              <GameMonstersList />
+              <Column justifyContent='flex-start' alignItems='flex-end'>
+                <Item className='game__map-container'>
+                  <GameMapContainer />
+                </Item>
+                <Item>
+                  <GameMonstersList />
+                </Item>
+              </Column>
             </Item>
-          </Column>
+          </Row>
         </Item>
       </Row>
     </Container>

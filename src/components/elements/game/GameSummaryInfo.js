@@ -21,7 +21,7 @@ const GameSummaryInfo = ({
 }) => {
   const ClassIconComponent = CLASS_ICONS[_class] ? CLASS_ICONS[_class] : undefined;
   return (
-    <Row justifyContent='center' alignItems='stretch'>
+    <Row justifyContent='flex-start' alignItems='stretch'>
       <Item xs={3} md={2}>
         <Column>
           <Item>

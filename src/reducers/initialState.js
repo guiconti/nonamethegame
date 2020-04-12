@@ -28,5 +28,8 @@ export default {
     visibleMonsters: {},
     visibleMonstersPositions: {},
     target: null,
-  }
+  },
+  battleLog: {
+    messages: [],
+  },
 };
