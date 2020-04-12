@@ -3,6 +3,7 @@ import authSaga from './authSaga';
 import navigationSaga from './navigationSaga';
 import adventurerSaga from './adventurerSaga';
 import gameSaga from './gameSaga';
+import itemSaga from './itemSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -10,5 +11,6 @@ export default function* rootSaga() {
     navigationSaga(),
     adventurerSaga(),
     gameSaga(),
+    itemSaga(),
   ]);
 }

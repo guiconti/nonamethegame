@@ -29,6 +29,10 @@ export default {
     visibleMonstersPositions: {},
     target: null,
   },
+  item: {
+    listLoading: true,
+    list: {}
+  },
   battleLog: {
     messages: [],
   },

@@ -6,6 +6,7 @@ import {
   disconnected,
   updateGameMetadata,
 } from '../../../actions/gameActions';
+import { fetchItemsList } from '../../../actions/itemActions';
 import webSocket from '../../../webSocket';
 import { CONNECTED, GAME_METADATA, ADVENTURER_MOVE } from '../../../constants/sockets';
 import {
@@ -20,10 +21,10 @@ import { UP, DOWN, LEFT, RIGHT } from '../../../constants/movements';
 const GameContainer = () => {
   const dispatch = useDispatch();
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = e => {
     if (MOVEMENT_KEYCODES.includes(e.keyCode)) {
       e.preventDefault();
-      switch(e.keyCode) {
+      switch (e.keyCode) {
         case ARROW_UP:
           webSocket.emit(ADVENTURER_MOVE, UP);
           break;
@@ -43,13 +44,15 @@ const GameContainer = () => {
   };
 
   useEffect(() => {
+    //  Load data
+    dispatch(fetchItemsList());
     dispatch(fetchConnect());
 
     //  Websocket events
     webSocket.on(CONNECTED, () => {
       dispatch(connected());
     });
-    webSocket.on(GAME_METADATA, (metadata) => {
+    webSocket.on(GAME_METADATA, metadata => {
       dispatch(updateGameMetadata(metadata));
     });
 
