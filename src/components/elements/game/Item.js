@@ -5,7 +5,10 @@ import './styles/item.scss';
 const Item = ({ name, amount }) => {
   return (
     <div className='game-item'>
-      <div className='game-item__content'>{amount}x {name}</div>
+      <div className='game-item__content'>
+        {amount}x {name.substring(0, 1)}
+        <span className='game-item__tooltip'>{name}</span>
+      </div>
     </div>
   );
 };
