@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchItemsList } from '../../../actions/itemActions';
-import {
-  getLoadingItems,
-  getItems,
-  getAdventurerInventory
-} from '../../../reducers/selectors';
+import { getLoadingItems, getAdventurerInventory } from '../../../reducers/selectors';
+import GameInventory from '../../elements/game/GameInventory';
+import { CATEGORIES, CONSUMABLE } from '../../../constants/inventory';
 
 const GameInventoryContainer = () => {
   const dispatch = useDispatch();
+  const [selectedCategory, setSelectedCategory] = useState(CONSUMABLE);
   const loading = useSelector(getLoadingItems);
-  const items = useSelector(getItems)
   const inventory = useSelector(getAdventurerInventory);
-  const miscellaneous = Object.keys(inventory.miscellaneous);
-  const consumable = Object.keys(inventory.consumable);
-  const equipment = Object.keys(inventory.equipment);
-  const card = Object.keys(inventory.card);
+
+  const onSelectedCategory = category => {
+    if (selectedCategory !== category) {
+      setSelectedCategory(category);
+    }
+  };
 
   useEffect(() => {
     dispatch(fetchItemsList());
@@ -23,10 +23,15 @@ const GameInventoryContainer = () => {
 
   return (
     <>
-      {loading || miscellaneous.length === 0 ? (
+      {loading || !inventory ? (
         <> </>
       ) : (
-        <div> {items[miscellaneous[0]].name} </div>
+        <GameInventory
+          inventory={inventory}
+          categories={CATEGORIES}
+          selectedCategory={selectedCategory}
+          onSelectCategory={onSelectedCategory}
+        />
       )}
     </>
   );

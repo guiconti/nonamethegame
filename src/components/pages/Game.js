@@ -16,10 +16,12 @@ const Game = () => {
     <Container>
       <GameContainer />
       <Row>
-        <Item xs={12}>
+        <Item xs={12} sm={6}>
           <GameSummaryInfoContainer />
         </Item>
-        <GameInventoryContainer />
+        <Item xs={12} sm={6}>
+          <GameInventoryContainer />
+        </Item>
         <Item xs={12}>
           <Row justifyContent='flex-start' alignItems='flex-start'>
             <Item className='game__battle-log'>

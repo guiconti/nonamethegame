@@ -1,0 +1,12 @@
+
+.game-item {
+  flex: 0 0 10%;
+  padding: 4px 4px;
+}
+
+.game-item__content {
+  border: 1px solid rgba(0, 0, 255, 0.6);
+  border-radius: 4px;
+  text-align: center;
+  height: 100%;
+}

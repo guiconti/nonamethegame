@@ -6,7 +6,6 @@ import {
   disconnected,
   updateGameMetadata,
 } from '../../../actions/gameActions';
-import { fetchItemsList } from '../../../actions/itemActions';
 import webSocket from '../../../webSocket';
 import { CONNECTED, GAME_METADATA, ADVENTURER_MOVE } from '../../../constants/sockets';
 import {
