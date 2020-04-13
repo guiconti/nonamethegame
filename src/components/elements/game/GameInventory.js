@@ -5,6 +5,15 @@ import Row from '../shared/Row';
 import ItemContainer from '../../containers/game/ItemContainer';
 import ItemMenu from '../../elements/game/ItemMenu';
 import ItemDetails from '../../elements/game/ItemDetails';
+import {
+  USE_OPTION,
+  EQUIP_OPTION,
+  ATTACH_OPTION,
+  DROP_OPTION,
+  OPTIONS_PER_TYPE,
+} from '../../../constants/inventory';
+import { USE_ITEM, EQUIP_ITEM, ATTACH_CARD, DROP_ITEM } from '../../../constants/sockets';
+import webSocket from '../../../webSocket';
 import './styles/gameInventory.scss';
 
 const GameInventory = ({ inventory, categories, selectedCategory, onSelectCategory }) => {
@@ -22,7 +31,7 @@ const GameInventory = ({ inventory, categories, selectedCategory, onSelectCatego
     setShowItemMenu(!showItemMenu);
   };
 
-  const onCloseItemMenu = (e) => {
+  const onCloseItemMenu = e => {
     e.preventDefault();
     setShowItemMenu(false);
   };
@@ -34,6 +43,26 @@ const GameInventory = ({ inventory, categories, selectedCategory, onSelectCatego
 
   const closeItemDetails = () => {
     setShowItemDetails(false);
+  };
+
+  const onClickDynamicOptions = option => {
+    setShowItemMenu(false);
+    switch (option) {
+      case USE_OPTION:
+        webSocket.emit(USE_ITEM, itemData._id);
+        break;
+      case EQUIP_OPTION:
+        webSocket.emit(EQUIP_ITEM, itemData._id);
+        break;
+      case ATTACH_OPTION:
+        webSocket.emit(ATTACH_CARD, itemData._id);
+        break;
+      case DROP_OPTION:
+        webSocket.emit(DROP_ITEM, itemData._id);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -64,10 +93,11 @@ const GameInventory = ({ inventory, categories, selectedCategory, onSelectCatego
       </Row>
       <ItemMenu
         active={showItemMenu}
-        options={itemData ? itemData.options : []}
+        options={itemData ? OPTIONS_PER_TYPE[itemData.type] : []}
         top={topMenuPosition}
         left={leftMenuPosition}
         onClickSeeMore={openItemDetails}
+        onClickDynamicOptions={onClickDynamicOptions}
         onCloseItemMenu={onCloseItemMenu}
       />
       <ItemDetails

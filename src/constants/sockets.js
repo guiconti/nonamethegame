@@ -3,3 +3,7 @@ export const GAME_METADATA = 'game_metadata';
 export const ADVENTURER_MOVE = 'adventurer_move';
 export const SOCKET_TARGET_MONSTER = 'target_monster';
 export const BATTLE_LOG_MESSAGE = 'battle_log_message';
+export const USE_ITEM = 'use_item';
+export const EQUIP_ITEM = 'equip_item';
+export const ATTACH_CARD = 'attach_card';
+export const DROP_ITEM = 'drop_item';
