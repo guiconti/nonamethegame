@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import './styles/itemMenu.scss';
 
-const ItemMenu = ({ active, options, top, left, onCloseItemMenu, ...rest }) => {
+const ItemMenu = ({ active, options, top, left, onClickSeeMore, onCloseItemMenu, ...rest }) => {
   return (
     <>
       <div
@@ -18,7 +18,7 @@ const ItemMenu = ({ active, options, top, left, onCloseItemMenu, ...rest }) => {
         style={{ top, left }}
         {...rest}
       >
-        <div className='item-menu__option'>See more</div>
+        <div className='item-menu__option' onClick={onClickSeeMore}>See more</div>
         {options &&
           options.map(option => (
             <div key={option} className='item-menu__option'>
@@ -35,6 +35,7 @@ ItemMenu.propTypes = {
   options: PropTypes.array,
   top: PropTypes.number,
   left: PropTypes.number,
+  onClickSeeMore: PropTypes.func,
   onCloseItemMenu: PropTypes.func,
 };
 

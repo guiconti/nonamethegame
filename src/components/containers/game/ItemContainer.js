@@ -1,37 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { getItems } from '../../../reducers/selectors';
 import Item from '../../elements/game/Item';
-import ItemMenu from '../../elements/game/ItemMenu';
 
-const ItemContainer = ({ itemId, amount }) => {
+const ItemContainer = ({ itemId, amount, openItemMenu }) => {
   const items = useSelector(getItems);
-  const [showMenu, setShowMenu] = useState(false);
-  const [topMenuPosition, setTopMenuPosition] = useState(0);
-  const [leftMenuPosition, setLeftMenuPosition] = useState(0);
-
-  const onItemLeftClick = e => {
-    e.preventDefault();
-    setTopMenuPosition(e.pageY);
-    setLeftMenuPosition(e.pageX);
-    setShowMenu(!showMenu);
-  };
-
-  const onCloseItemMenu = () => {
-    setShowMenu(false);
-  };
 
   return (
     <>
-      <Item name={items[itemId].name} amount={amount} onContextMenu={onItemLeftClick} />
-      <ItemMenu
-        active={showMenu}
-        options={items.options}
-        top={topMenuPosition}
-        left={leftMenuPosition}
-        onCloseItemMenu={onCloseItemMenu}
-      />
+      <Item name={items[itemId].name} amount={amount} onContextMenu={e => openItemMenu(e, items[itemId])} />
     </>
   );
 };
@@ -39,6 +17,7 @@ const ItemContainer = ({ itemId, amount }) => {
 ItemContainer.propTypes = {
   itemId: PropTypes.string.isRequired,
   amount: PropTypes.number,
+  openItemMenu: PropTypes.func.isRequired,
 };
 
 export default ItemContainer;
