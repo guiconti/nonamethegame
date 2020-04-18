@@ -7,6 +7,7 @@ import {
   getAdventurerName,
   getAdventurerLevel,
   getAdventurerExperience,
+  getAdventurerExperienceToNextLevel,
   getAdventurerHealth,
   getAdventurerCurrentHealth,
   getAdventurerMana,
@@ -21,6 +22,7 @@ const GameSummaryInfoContainer = () => {
   const name = useSelector(getAdventurerName);
   const level = useSelector(getAdventurerLevel);
   const experience = useSelector(getAdventurerExperience);
+  const experienceToNextLevel = useSelector(getAdventurerExperienceToNextLevel);
   const health = useSelector(getAdventurerHealth);
   const currentHealth = useSelector(getAdventurerCurrentHealth);
   const mana = useSelector(getAdventurerMana);
@@ -41,6 +43,7 @@ const GameSummaryInfoContainer = () => {
           name={name}
           level={level}
           experience={experience}
+          experienceToNextLevel={experienceToNextLevel}
           health={health}
           currentHealth={currentHealth}
           mana={mana}

@@ -6,6 +6,7 @@ import Item from '../shared/Item';
 import Avatar from '../shared/Avatar';
 import HealthBar from '../adventurer/HealthBar';
 import ManaBar from '../adventurer/ManaBar';
+import ExpBar from '../adventurer/ExpBar';
 import { CLASS_ICONS } from '../../../constants/adventurer';
 import './styles/gameSummaryInfo.scss';
 
@@ -40,7 +41,7 @@ const GameSummaryInfo = ({
           </Item>
           <Item>
             <Row>
-              <Item>HP</Item>
+              <Item className="game-summary-info__progress-label">HP</Item>
               <Item>
                 <HealthBar health={health} currentHealth={currentHealth} />
               </Item>
@@ -48,17 +49,17 @@ const GameSummaryInfo = ({
           </Item>
           <Item>
             <Row>
-              <Item>EXP</Item>
+              <Item className="game-summary-info__progress-label">SP</Item>
               <Item>
-                <HealthBar health={experienceToNextLevel} currentHealth={experience} />
+                <ManaBar mana={mana} currentMana={currentMana} />
               </Item>
             </Row>
           </Item>
           <Item>
             <Row>
-              <Item>SP</Item>
+              <Item className="game-summary-info__progress-label">EXP</Item>
               <Item>
-                <ManaBar mana={mana} currentMana={currentMana} />
+                <ExpBar experienceToNextLevel={experienceToNextLevel} experience={experience} />
               </Item>
             </Row>
           </Item>

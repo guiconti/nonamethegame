@@ -1,0 +1,10 @@
+@import '../../../styles/functions.scss';
+
+.exp-bar {
+  border-color: color(exp);
+  color: color(exp-dark);
+
+  .progress-bar__filled {
+    background-color: color(exp);
+  }
+}
