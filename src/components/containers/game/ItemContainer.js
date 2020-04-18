@@ -6,10 +6,17 @@ import Item from '../../elements/game/Item';
 
 const ItemContainer = ({ itemId, amount, openItemMenu }) => {
   const items = useSelector(getItems);
-
   return (
     <>
-      <Item name={items[itemId].name} amount={amount} onContextMenu={e => openItemMenu(e, items[itemId])} />
+      {items[itemId] ? (
+        <Item
+          name={items[itemId].name}
+          amount={amount}
+          onContextMenu={e => openItemMenu(e, items[itemId])}
+        />
+      ) : (
+        <></>
+      )}
     </>
   );
 };

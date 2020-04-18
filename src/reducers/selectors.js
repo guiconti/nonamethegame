@@ -1,8 +1,7 @@
-
 //  Auth
 export const getSignedIn = state => state.auth.signedIn;
 export const getAuthLoading = state => state.auth.loading;
-export const getAuthShowError =state => state.auth.showError;
+export const getAuthShowError = state => state.auth.showError;
 
 //  Adventurer
 export const getAdventurerListLoading = state => state.adventurer.listLoading;
@@ -15,12 +14,15 @@ export const getAdventurerLevel = state => state.adventurer.level;
 export const getAdventurerClass = state => state.adventurer.class;
 export const getAdventurerRace = state => state.adventurer.race;
 export const getAdventurerExperience = state => state.adventurer.info.experience;
+export const getAdventurerExperienceToNextLevel = state =>
+  state.adventurer.info.experienceToNextLevel;
 export const getAdventurerHealth = state => state.adventurer.info.health;
 export const getAdventurerCurrentHealth = state => state.adventurer.info.currentHealth;
 export const getAdventurerMana = state => state.adventurer.info.mana;
 export const getAdventurerCurrentMana = state => state.adventurer.info.currentMana;
 export const getAdventurerPosition = state => state.adventurer.position;
 export const getAdventurerInventory = state => state.adventurer.inventory;
+export const getAdventurerEquipment = state => state.adventurer.equipment;
 
 //  Monster
 export const getVisibleMonsters = state => state.monster.visibleMonsters;

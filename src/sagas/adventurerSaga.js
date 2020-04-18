@@ -17,6 +17,7 @@ import {
   updateAdventurerInfo,
   adventurerLoaded,
   updateInventory,
+  updateEquipment,
 } from '../actions/adventurerActions';
 import listAdventurers from '../apis/listAdventurers';
 import selectAdventurer from '../apis/selectAdventurer';
@@ -50,6 +51,7 @@ export function* fetchAdventurerInfo(payload) {
     const response = yield call(adventurerInfo, payload);
     yield put(updateAdventurerInfo(response.data));
     yield put(updateInventory(response.data.inventory));
+    yield put(updateEquipment(response.data.equipment));
     yield put(adventurerLoaded());
   } catch (err) {
     //  Handle error with an action

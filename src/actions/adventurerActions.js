@@ -14,6 +14,7 @@ import {
   FETCH_CREATE_ADVENTURER,
   UPDATE_POSITION,
   UPDATE_INVENTORY,
+  UPDATE_EQUIPMENT,
 } from '../types/adventurer';
 
 export function listLoading() {
@@ -108,6 +109,13 @@ export function updatePosition(payload) {
 export function updateInventory(payload) {
   return {
     type: UPDATE_INVENTORY,
+    payload,
+  };
+}
+
+export function updateEquipment(payload) {
+  return {
+    type: UPDATE_EQUIPMENT,
     payload,
   };
 }

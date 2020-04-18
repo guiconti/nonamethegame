@@ -23,6 +23,17 @@ export default {
       equipment: {},
       card: {},
     },
+    equipment: {
+      head: {},
+      middleHead: {},
+      shoulder: {},
+      chest: {},
+      rightHand: {},
+      leftHand: {},
+      feet: {},
+      firstAccessory: {},
+      secondAccessory: {},
+    },
   },
   game: {
     loading: false,

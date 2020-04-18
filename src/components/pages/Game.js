@@ -9,6 +9,7 @@ import GameMapContainer from '../containers/game/GameMapContainer';
 import GameMonstersList from '../containers/game/GameMonstersListContainer';
 import GameInventoryContainer from '../containers/game/GameInventoryContainer';
 import BattleLogContainer from '../containers/game/BattleLogContainer';
+import GameEquipmentContainer from '../containers/game/GameEquipmentContainer';
 import './styles/game.scss';
 
 const Game = () => {
@@ -36,6 +37,9 @@ const Game = () => {
                   <GameMonstersList />
                 </Item>
               </Column>
+            </Item>
+            <Item>
+              <GameEquipmentContainer />
             </Item>
           </Row>
         </Item>

@@ -8,6 +8,7 @@ import {
   updatePosition,
   updateAdventurerInfo,
   updateInventory,
+  updateEquipment,
 } from '../actions/adventurerActions';
 import {
   getAdventurerHealth,
@@ -20,6 +21,7 @@ import {
   getVisibleMonstersPositions,
   getTarget,
   getAdventurerInventory,
+  getAdventurerEquipment,
 } from '../reducers/selectors';
 import webSocket from '../webSocket';
 import { SOCKET_TARGET_MONSTER } from '../constants/sockets';
@@ -97,7 +99,8 @@ export function* checkAdventurerInventoryUpdate(payload) {
   for (let i = 0; i < currentMiscellaneous.length; i++) {
     if (
       !payload.miscellaneous[currentMiscellaneous[i]] ||
-      payload.miscellaneous[currentMiscellaneous[i]].amount !== currentInventory.miscellaneous[currentMiscellaneous[i]].amount
+      payload.miscellaneous[currentMiscellaneous[i]].amount !==
+        currentInventory.miscellaneous[currentMiscellaneous[i]].amount
     ) {
       yield put(updateInventory(payload));
       return;
@@ -106,7 +109,8 @@ export function* checkAdventurerInventoryUpdate(payload) {
   for (let i = 0; i < currentConsumable.length; i++) {
     if (
       !payload.consumable[currentConsumable[i]] ||
-      payload.consumable[currentConsumable[i]].amount !== currentInventory.consumable[currentConsumable[i]].amount
+      payload.consumable[currentConsumable[i]].amount !==
+        currentInventory.consumable[currentConsumable[i]].amount
     ) {
       yield put(updateInventory(payload));
       return;
@@ -115,7 +119,8 @@ export function* checkAdventurerInventoryUpdate(payload) {
   for (let i = 0; i < currentEquipment.length; i++) {
     if (
       !payload.equipment[currentEquipment[i]] ||
-      payload.equipment[currentEquipment[i]].amount !== currentInventory.equipment[currentEquipment[i]].amount
+      payload.equipment[currentEquipment[i]].amount !==
+        currentInventory.equipment[currentEquipment[i]].amount
     ) {
       yield put(updateInventory(payload));
       return;
@@ -132,6 +137,19 @@ export function* checkAdventurerInventoryUpdate(payload) {
   }
 }
 
+export function* checkAdventurerEquipmentUpdate(payload) {
+  const currentEquipment = yield select(getAdventurerEquipment);
+  const currentEquipmentKeys = Object.keys(currentEquipment);
+
+  for (let i = 0; i < currentEquipmentKeys.length; i++) {
+    const currentEquipmentPosition = currentEquipmentKeys[i];
+    if (currentEquipment[currentEquipmentPosition]._id !== payload[currentEquipmentPosition]._id) {
+      yield put(updateEquipment(payload));
+      return;
+    }
+  }
+}
+
 export function* updateGameMetadata(payload) {
   const newAdventurer = payload.adventurer;
   const monsters = payload.monsters;
@@ -140,6 +158,7 @@ export function* updateGameMetadata(payload) {
   yield fork(checkTargetUpdate, newAdventurer.target);
   yield fork(checkAdventurerInfoUpdate, newAdventurer);
   yield fork(checkAdventurerInventoryUpdate, newAdventurer.inventory);
+  yield fork(checkAdventurerEquipmentUpdate, newAdventurer.equipment);
 
   let shouldRedrawnMinimap = false;
   const oldPosition = yield select(getAdventurerPosition);

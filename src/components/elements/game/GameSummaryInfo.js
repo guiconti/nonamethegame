@@ -13,6 +13,7 @@ const GameSummaryInfo = ({
   name,
   level,
   experience,
+  experienceToNextLevel,
   health,
   currentHealth,
   mana,
@@ -47,6 +48,14 @@ const GameSummaryInfo = ({
           </Item>
           <Item>
             <Row>
+              <Item>EXP</Item>
+              <Item>
+                <HealthBar health={experienceToNextLevel} currentHealth={experience} />
+              </Item>
+            </Row>
+          </Item>
+          <Item>
+            <Row>
               <Item>SP</Item>
               <Item>
                 <ManaBar mana={mana} currentMana={currentMana} />
@@ -63,6 +72,7 @@ GameSummaryInfo.propTypes = {
   name: PropTypes.string.isRequired,
   level: PropTypes.number.isRequired,
   experience: PropTypes.number.isRequired,
+  experienceToNextLevel: PropTypes.number.isRequired,
   health: PropTypes.number.isRequired,
   currentHealth: PropTypes.number.isRequired,
   mana: PropTypes.number.isRequired,
