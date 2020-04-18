@@ -7,3 +7,4 @@ export const USE_ITEM = 'use_item';
 export const EQUIP_ITEM = 'equip_item';
 export const ATTACH_CARD = 'attach_card';
 export const DROP_ITEM = 'drop_item';
+export const ADD_POINTS = 'add_points';

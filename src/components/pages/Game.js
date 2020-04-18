@@ -5,6 +5,7 @@ import Column from '../elements/shared/Column';
 import Item from '../elements/shared/Item';
 import GameContainer from '../containers/game/GameContainer';
 import GameSummaryInfoContainer from '../containers/game/GameSummaryInfoContainer';
+import AddPointsContainer from '../containers/game/AddPointsContainer';
 import GameMapContainer from '../containers/game/GameMapContainer';
 import GameMonstersList from '../containers/game/GameMonstersListContainer';
 import GameInventoryContainer from '../containers/game/GameInventoryContainer';
@@ -18,7 +19,14 @@ const Game = () => {
       <GameContainer />
       <Row>
         <Item xs={12} sm={6}>
-          <GameSummaryInfoContainer />
+          <Row alignItems="center">
+            <Item xs={8}>
+              <GameSummaryInfoContainer />
+            </Item>
+            <Item xs={2}>
+              <AddPointsContainer />
+            </Item>
+          </Row>
         </Item>
         <Item xs={12} sm={6}>
           <GameInventoryContainer />

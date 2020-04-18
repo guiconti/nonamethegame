@@ -23,6 +23,8 @@ export const getAdventurerCurrentMana = state => state.adventurer.info.currentMa
 export const getAdventurerPosition = state => state.adventurer.position;
 export const getAdventurerInventory = state => state.adventurer.inventory;
 export const getAdventurerEquipment = state => state.adventurer.equipment;
+export const getAdventurerPointsToDistribute = state => state.adventurer.info.pointsToDistribute;
+export const getAdventurerAttributes = state => state.adventurer.info.attributes;
 
 //  Monster
 export const getVisibleMonsters = state => state.monster.visibleMonsters;
