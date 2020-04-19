@@ -4,6 +4,7 @@ import { fetchGameMap, startDrawingMap, stopDrawingMap } from '../../../actions/
 import {
   getGameMap,
   getAdventurerPosition,
+  getAdventurerSightRange,
   getVisibleMonstersPositions,
   getDrawMap,
 } from '../../../reducers/selectors';
@@ -15,6 +16,7 @@ const GameMapContainer = () => {
   const gameMap = useSelector(getGameMap);
   const drawMap = useSelector(getDrawMap);
   const adventurerPosition = useSelector(getAdventurerPosition);
+  const adventurerSightRange = useSelector(getAdventurerSightRange);
   const visibleMonstersPositions = useSelector(getVisibleMonstersPositions);
 
   const setup = (p5, parentRef) => {
@@ -40,6 +42,13 @@ const GameMapContainer = () => {
           p5.square(j * sizeOfSquare, i * sizeOfSquare, sizeOfSquare);
         }
       }
+      p5.noFill();
+      p5.stroke(255);
+      p5.square(
+        adventurerPosition.x * sizeOfSquare - sizeOfSquare * adventurerSightRange,
+        adventurerPosition.y * sizeOfSquare - sizeOfSquare * adventurerSightRange,
+        sizeOfSquare * ((adventurerSightRange * 2) + 1)
+      );
       dispatch(stopDrawingMap());
     }
   };

@@ -20,6 +20,7 @@ export const getAdventurerHealth = state => state.adventurer.info.health;
 export const getAdventurerCurrentHealth = state => state.adventurer.info.currentHealth;
 export const getAdventurerMana = state => state.adventurer.info.mana;
 export const getAdventurerCurrentMana = state => state.adventurer.info.currentMana;
+export const getAdventurerSightRange = state => state.adventurer.info.sightRange;
 export const getAdventurerPosition = state => state.adventurer.position;
 export const getAdventurerInventory = state => state.adventurer.inventory;
 export const getAdventurerEquipment = state => state.adventurer.equipment;
