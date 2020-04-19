@@ -214,6 +214,7 @@ export function* updateGameMetadata(payload) {
 }
 
 function* targetMonster(payload) {
+  yield put(startDrawingMap());
   yield webSocket.emit(SOCKET_TARGET_MONSTER, payload);
 }
 

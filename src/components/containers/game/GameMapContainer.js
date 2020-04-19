@@ -5,6 +5,7 @@ import {
   getGameMap,
   getAdventurerPosition,
   getAdventurerSightRange,
+  getTarget,
   getVisibleMonstersPositions,
   getDrawMap,
 } from '../../../reducers/selectors';
@@ -17,6 +18,7 @@ const GameMapContainer = () => {
   const drawMap = useSelector(getDrawMap);
   const adventurerPosition = useSelector(getAdventurerPosition);
   const adventurerSightRange = useSelector(getAdventurerSightRange);
+  const target = useSelector(getTarget);
   const visibleMonstersPositions = useSelector(getVisibleMonstersPositions);
 
   const setup = (p5, parentRef) => {
@@ -27,6 +29,7 @@ const GameMapContainer = () => {
 
   const draw = p5 => {
     if (drawMap && gameMap.length > 0) {
+      dispatch(stopDrawingMap());
       let sizeOfSquare = p5.width / gameMap.length;
       p5.background(0);
       p5.noStroke();
@@ -39,17 +42,22 @@ const GameMapContainer = () => {
           } else {
             p5.fill(TILE_COLORS[gameMap[i][j]]);
           }
+          if (visibleMonstersPositions[`${j}-${i}`] === target) {
+            p5.stroke(255);
+            p5.strokeWeight(1);
+          }
           p5.square(j * sizeOfSquare, i * sizeOfSquare, sizeOfSquare);
+          p5.noStroke();
         }
       }
       p5.noFill();
       p5.stroke(255);
+      p5.strokeWeight(1);
       p5.square(
         adventurerPosition.x * sizeOfSquare - sizeOfSquare * adventurerSightRange,
         adventurerPosition.y * sizeOfSquare - sizeOfSquare * adventurerSightRange,
         sizeOfSquare * ((adventurerSightRange * 2) + 1)
       );
-      dispatch(stopDrawingMap());
     }
   };
 
